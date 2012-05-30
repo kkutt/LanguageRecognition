@@ -1,0 +1,20 @@
+LanguageRecognition
+===================
+
+Projekt przygotowany na przedmiot Sztuczne Sieci Neuronowe 2011/2012.
+Autorzy: Krzysztof Kutt & Michał Nowak (wtorek 10:00).
+
+Aplikacja ma na celu rozpoznawanie języka zadanego tekstu na podstawie częstotliwości występowania liter. Wykorzystano sieć neuronową.
+
+Przygotowano przykładowy zbiór tekstów w trzech językach: DE, FR, PL do nauki i testowania sieci. Nic nie stoi na przeszkodzie, aby program rozszerzać o dowolną ilość rozpoznawanych języków - wymagany jest tylko odpowiedni materiał do nauki dla sieci.
+
+
+
+--------------------
+- TODO: GUI -
+1. Miejsce, gdzie można określić listę języków (skrótami, np: "DE", "PL")
+2. Okienko z listą par: nazwa pliku (jakaś opcja wczytywania plików z dysku) + język (wybrany z listy dostępnych).
+3. Radio button: nauka / test
+4. Zapisz/wczytaj sieć (plik z rozszerzeniem: *.net)
+5. Zapisz/wczytaj plik z danymi o tekstach (ten plik gdzie są zapisane pary: nazwa + język) (*.txt?)
+
