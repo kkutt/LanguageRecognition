@@ -1,5 +1,7 @@
 package ssn;
 
+import java.awt.EventQueue;
+import javax.swing.JFrame;
 import org.encog.Encog;
 import org.encog.ml.data.MLDataSet;
 import org.encog.neural.networks.BasicNetwork;
@@ -7,6 +9,7 @@ import org.encog.neural.networks.training.propagation.resilient.ResilientPropaga
 import ssn.file.DataFile;
 import ssn.file.NetworkFile;
 import ssn.network.NetworkUtils;
+import ssn.gui.Gui;
 
 /**
  * Program do rozpoznawania jezyka zadanego fragmentu tekstu.
@@ -24,10 +27,19 @@ public class LanguageRecognition {
     
     public static void main(String[] args) {
         
+        EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                Gui gui = new Gui();
+                gui.setVisible(true);
+            }
+        });
+        
+        
         String mode = "";
         String dataFileName = "def_data.txt";
         String networkFileName = "def_network.net";
-        
         
         //obsluga argumentow wywolania programu
         if ( args.length <= 0 || args.length > 3 ) {
