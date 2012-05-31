@@ -3,11 +3,10 @@ package ssn.gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.io.File;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -30,14 +29,8 @@ public class Gui extends javax.swing.JFrame {
     /* zmienne */
     String networkFileName;
     String dataFileName;
-    
     HashSet<TextFile> textFiles;
-    //lista jezykow: languageList
-    //langQuantity - z listy jezykow
-    //dataQuantity - z textFiles
-    
     BasicNetwork network;
-    
     Mode mode;
     public enum Mode { LEARN, TEST }
     
@@ -369,11 +362,11 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void netNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netNameTextFieldActionPerformed
-        // TODO nothing?
+        // nothing
     }//GEN-LAST:event_netNameTextFieldActionPerformed
 
     private void dataNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNameTextFieldActionPerformed
-        // TODO nothing?
+        // nothing
     }//GEN-LAST:event_dataNameTextFieldActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
@@ -384,6 +377,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser netChooser = new JFileChooser();
         FileNameExtensionFilter netFilter = new FileNameExtensionFilter("Pliki sieci (.net)", "net");
         netChooser.setFileFilter(netFilter);
+        netChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int netResult = netChooser.showDialog(this, "Wybierz sieć");
         if(netResult == 0){
             networkFileName = netChooser.getSelectedFile().getPath();
@@ -395,6 +389,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser addFileChooser = new JFileChooser();
         FileNameExtensionFilter addFileFilter = new FileNameExtensionFilter("Plik txt", "txt");
         addFileChooser.setFileFilter(addFileFilter);
+        addFileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int addFileResult = addFileChooser.showDialog(this, "Wybierz plik");
         int selectedLanguage = languageList.getSelectedIndex();
         String addFileLanguage;
@@ -415,12 +410,14 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser dataChooser = new JFileChooser();
         FileNameExtensionFilter dataFilter = new FileNameExtensionFilter("Pliki danych (.txt)", "txt");
         dataChooser.setFileFilter(dataFilter);
+        dataChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
         int dataResult = dataChooser.showDialog(this, "Wybierz dane");
         if(dataResult == 0){
             dataFileName = dataChooser.getSelectedFile().getPath();
             dataNameTextField.setText(dataFileName.substring(dataFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
+            textFiles.clear();
             DataFile.loadData(dataFileName, textFiles);
-            //TODO: zaktualizowac liste jezykow
+            refreshLanguageList();
             refreshPairList();
         }
     }//GEN-LAST:event_dataOpenButtonActionPerformed
@@ -529,8 +526,45 @@ public class Gui extends javax.swing.JFrame {
             model[index] = text.getLanguage() + " - " + text.getFilename();
             index++;
         }
+        Arrays.sort(model);
         
         textLanguageList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = model;
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+    }
+    
+    
+    /** 
+     * przeglada liste plikow i sprawdza jakie sa jezyki (do wykorzystywania przy wczytywaniu zestawu danych
+     */
+    private void refreshLanguageList() {
+        HashSet<String> modelSet = new HashSet<String>();
+        for( TextFile text : textFiles ) {
+            modelSet.add(text.getLanguage());
+        }
+        final String[] model = new String[modelSet.size()];
+        modelSet.toArray(model);
+        Arrays.sort(model);
+        languageList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = model;
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+    }
+    
+    
+    /** 
+     * sortuje aktualna liste jezykow (do wykorzystania przy dodawaniu nowego jezyka)
+     */
+    private void sortLanguageList() {
+        final String[] model = new String[languageList.getModel().getSize()];
+        for( int i = 0; i < languageList.getModel().getSize(); i++) {
+            model[i] = (String) languageList.getModel().getElementAt(i);
+        }
+        Arrays.sort(model);
+        languageList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = model;
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }

@@ -95,7 +95,7 @@ public class NetworkUtils {
     /**
      * Test sieci
      */
-    public static void testNetwork(BasicNetwork network, MLDataSet testSet) {
+    public static void testNetwork(BasicNetwork network, MLDataSet testSet, String[] langs) {
         System.out.println("Test Results:\n");
         int test = 0;
         int succ = 0;
@@ -115,7 +115,7 @@ public class NetworkUtils {
                     idealRes = i;				     //wyjsciowy ma wartosc 1.0; pozostale maja wartosc 0.0
                 }
             }
-            System.out.println("Ideal response:   " + idealRes);
+            System.out.println("Ideal response:   " + langs[idealRes]);
             
             double[] networkResponse = output.getData();
             for(int i = 0; i < outputSize; i++) {
@@ -123,7 +123,7 @@ public class NetworkUtils {
                     networkRes = i;					   //osiagnieta zostala najwieksza wartosc
                 }
             }
-            System.out.println("Network response: " + networkRes + " [ prob: " + networkResponse[networkRes] + "]");
+            System.out.println("Network response: " + langs[networkRes] + " [ prob: " + networkResponse[networkRes] + "]");
             
             if( networkRes == idealRes )
                 succ++;

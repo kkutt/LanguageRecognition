@@ -54,7 +54,7 @@ public class NetworkModes {
         }
         
         //test sieci
-        NetworkUtils.testNetwork(network, testSet);
+        NetworkUtils.testNetwork(network, testSet, langs);
         
     }
 }

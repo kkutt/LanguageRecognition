@@ -1,11 +1,11 @@
 CZ - czeski
 DE - niemiecki
 EN - angielski
-ES - hiszpañski
+ES - hiszpaÅ„ski
 EZ - esperanto
 FR - francuski
-HU - wêgierski
-IT - w³oski
-LA - ³acina
+HU - wÄ™gierski
+IT - wÅ‚oski
+LA - Å‚acina
 PL - polski
-SK - s³owacki
+SK - sÅ‚owacki
