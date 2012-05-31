@@ -1,13 +1,13 @@
-3 12
-0 data/DE/die_toten_hosen_-_100_tage_bis_zum_untergang
-0 data/DE/lafee_-_wer_bin_ich
-0 data/DE/lewis_caroll_-_alices_abenteuer_im_wunderland
-0 data/DE/peter_schillig_-_terra_titanic
-1 data/FR/darwin_-_de_lorigine_des_especes_-_introduction
-1 data/FR/edith_piaf_-_non_je_ne_regrette_rien
-1 data/FR/joe_dassin_-_a_toi
-1 data/FR/joe_dassin_-_lete_indien
-2 data/PL/mrozu_-_miliony_monet
-2 data/PL/natalia_kukulska_-_wiernosc_jest_nudna
-2 data/PL/tomasz_jachimek_-_piosenka_o_corce
-2 data/PL/william_shakespeare_-_romeo_i_julia
+12
+DE data/DE/die_toten_hosen_-_100_tage_bis_zum_untergang
+DE data/DE/lafee_-_wer_bin_ich
+DE data/DE/lewis_caroll_-_alices_abenteuer_im_wunderland
+DE data/DE/peter_schillig_-_terra_titanic
+FR data/FR/darwin_-_de_lorigine_des_especes_-_introduction
+FR data/FR/edith_piaf_-_non_je_ne_regrette_rien
+FR data/FR/joe_dassin_-_a_toi
+FR data/FR/joe_dassin_-_lete_indien
+PL data/PL/mrozu_-_miliony_monet
+PL data/PL/natalia_kukulska_-_wiernosc_jest_nudna
+PL data/PL/tomasz_jachimek_-_piosenka_o_corce
+PL data/PL/william_shakespeare_-_romeo_i_julia

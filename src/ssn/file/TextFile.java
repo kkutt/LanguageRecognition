@@ -14,12 +14,12 @@ import ssn.LanguageRecognition;
  */
 public class TextFile {
     String filename;
-    int language;
+    String language;
     double lettersQuantity[];
     boolean counted;
     boolean error;
 
-    public TextFile(String filename, int language) {
+    public TextFile(String filename, String language) {
         this.filename = filename;
         this.language = language;
         counted = false;
@@ -29,7 +29,7 @@ public class TextFile {
             lettersQuantity[i] = 0.0;
     }
 
-    public int getLanguage() {
+    public String getLanguage() {
         return language;
     }
     

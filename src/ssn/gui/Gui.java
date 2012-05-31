@@ -3,6 +3,7 @@ package ssn.gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -11,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import ssn.file.DataFile;
+import ssn.file.TextFile;
 
 /**
  *
@@ -23,7 +25,10 @@ public class Gui extends javax.swing.JFrame {
     String networkFileName;
     String dataFileName;
     
-    DataFile dataFile;
+    HashSet<TextFile> textFiles;
+    //lista jezykow: languageList
+    //langQuantity - z listy jezykow
+    //dataQuantity - z textFiles
     
     Mode mode;
     public enum Mode { LEARN, TEST }
@@ -302,12 +307,17 @@ public class Gui extends javax.swing.JFrame {
     private void initVariables() {
         networkFileName = "";
         dataFileName = "";
-        dataFile = new DataFile();
+        textFiles = new HashSet<TextFile>();
         mode = Mode.LEARN;
     }
     
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
+        if( mode == Mode.LEARN ) {
+            //TODO: uczenie i wyswietleneie wynikow
+        } else if ( mode == Mode.TEST ) {
+            //TODO: test i wyswietleneie wynikow
+        }
+        
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void netNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netNameTextFieldActionPerformed
@@ -346,7 +356,10 @@ public class Gui extends javax.swing.JFrame {
             addFileLanguage = languageList.getSelectedValue().toString();
         System.out.println("jezyk to: " + addFileLanguage);
         if(addFileResult == 0){
-            // TODO: dodaje plik do listy plikow i wyswietla go na liscie par
+            String newTextFileName = addFileChooser.getSelectedFile().getPath();
+            TextFile newTextFile = new TextFile(newTextFileName,addFileLanguage);
+            textFiles.add(newTextFile);
+            // TODO: aktualizacja listy par
         }
     }//GEN-LAST:event_addFileButtonActionPerformed
 
@@ -356,9 +369,10 @@ public class Gui extends javax.swing.JFrame {
         dataChooser.setFileFilter(dataFilter);
         int dataResult = dataChooser.showDialog(this, "Wybierz!");
         if(dataResult == 0){
-            String dataFileName = dataChooser.getSelectedFile().getPath();
+            dataFileName = dataChooser.getSelectedFile().getPath();
             dataNameTextField.setText(dataFileName.substring(dataFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
-            dataFile = new DataFile(dataFileName);
+            DataFile.loadData(dataFileName, textFiles);
+            //TODO: zaktualizowac liste jezykow
             //TODO: wyswietlic listy par
         }
     }//GEN-LAST:event_dataOpenButtonActionPerformed

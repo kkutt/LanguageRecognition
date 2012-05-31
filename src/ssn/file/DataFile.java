@@ -4,60 +4,40 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 
 /**
- * Klasa reprezentujaca plik zawierajacy zestaw danych (do nauki/testu).
+ * Klasa dzialajaca na plikach zawierajacych zestawy danych (do nauki/testu).
  * 
  * Schemat pliku:
- *     L N
+ *     N
  *     language1 filename1
  *     language2 filename2
  *     ...
  *     languageN filenameN
  * 
  * Gdzie:
- *     L - ilosc analizowanych jezykow
  *     N - ilosc plikow z tekstem
  *     filenameX - sciezka do pliku z tekstem (bez spacji)
- *     languageX - jezyk tekstu w pliku filenameX (liczba z przedzialu [0; L) )
+ *     languageX - jezyk tekstu w pliku filenameX (String, np PL, EN, DE)
  * 
  * @author Krzysztof Kutt
  * @author Michal Nowak
  */
 public class DataFile {
-    String filename;
-    int langQuantity;
-    int dataQuantity;
-    TextFile textFiles[];
-
-    public DataFile() {
-        filename = "";
-        langQuantity = 0;
-        dataQuantity = 0;
-        textFiles = null;
-    }
-    
-    public DataFile(String filename) {
-        this.filename = filename;
-        loadData();
-    }
-    
-    private void loadData() {
+    public static void loadData(String filename, HashSet<TextFile> textFiles) {
         try{
             BufferedReader in = new BufferedReader(new FileReader(filename));
             StringTokenizer st = new StringTokenizer(in.readLine());
-            langQuantity = Integer.parseInt(st.nextToken());
-            dataQuantity = Integer.parseInt(st.nextToken());
-            
-            textFiles = new TextFile[dataQuantity];
+            int dataQuantity = Integer.parseInt(st.nextToken());
             
             for(int i = 0; i < dataQuantity; i++) {
                 //wczytywanie informacji o pliku i
                 st = new StringTokenizer(in.readLine());
-                int lang = Integer.parseInt(st.nextToken());
+                String lang = st.nextToken();
                 String path = st.nextToken();
-                textFiles[i] = new TextFile(path, lang);
+                textFiles.add(new TextFile(path, lang));
             }
         } catch ( FileNotFoundException e ) {
             System.out.println("ERROR: Plik " + filename + " nie istnieje");
@@ -70,27 +50,10 @@ public class DataFile {
         }
     }
 
-    public int getDataQuantity() {
-        return dataQuantity;
-    }
-
-    public int getLangQuantity() {
-        return langQuantity;
-    }
-    
-    public TextFile getTextFile(int n) {
-        if( n < 0 )
-            n = 0;
-        if( n >= dataQuantity )
-            n = dataQuantity-1;
-        
-        return textFiles[n];
-    }
-    
-    public int howManyErrors() {
+    public static int howManyErrors(HashSet<TextFile> textFiles) {
         int err = 0;
-        for(int i = 0; i < dataQuantity; i++) {
-            if( textFiles[i].hasError() )
+        for( TextFile text : textFiles ) {
+            if( text.hasError() )
                 err++;
         }
         return err;
