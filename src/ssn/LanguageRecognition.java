@@ -16,6 +16,10 @@ public class LanguageRecognition {
     public static final int LETTERS_COUNT = 26;  //liczba wejsc sieci neuronowej
     public static final int INNER_LAYER_SIZE = 10;
     
+    public static final String DEFAULT_DATA_FILENAME = "saved_data";
+    public static final String DEFAULT_NETWORK_FILENAME = "saved_net";
+    
+    
     public static void main(String[] args) {
         
         EventQueue.invokeLater(new Runnable() {

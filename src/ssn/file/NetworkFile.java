@@ -28,7 +28,7 @@ public class NetworkFile {
             objectOutputStream.writeObject(network);
             objectOutputStream.close();
         } catch(IOException ex) {
-            System.out.println("ERROR: Blad podczas zapisu sieci do pliku!");
+            System.out.println("WARN: Blad podczas zapisu sieci do pliku!");
         }
     }
     
@@ -48,9 +48,9 @@ public class NetworkFile {
             network = (BasicNetwork) loadedFromFile;
             objectInputStream.close();
         } catch(IOException e) {
-            System.out.println("ERROR: Blad podczas wczytywania pliku sieci");
+            System.out.println("WARN: Blad podczas wczytywania pliku sieci");
         } catch(ClassNotFoundException e) {
-            System.out.println("ERROR: Blad podczas ladowania sieci");
+            System.out.println("WARN: Blad podczas ladowania sieci");
         }
         
         return network;

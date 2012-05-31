@@ -3,9 +3,13 @@ package ssn.file;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Klasa dzialajaca na plikach zawierajacych zestawy danych (do nauki/testu).
@@ -40,13 +44,41 @@ public class DataFile {
                 textFiles.add(new TextFile(path, lang));
             }
         } catch ( FileNotFoundException e ) {
-            System.out.println("ERROR: Plik " + filename + " nie istnieje");
+            System.out.println("WARN: Plik " + filename + " nie istnieje");
             //e.printStackTrace();
-            System.exit(1);
         } catch ( IOException e ) {
-            System.out.println("ERROR: Blad pliku " + filename);
+            System.out.println("WARN: Blad pliku " + filename);
             //e.printStackTrace();
-            System.exit(1);
+        }
+    }
+    
+    public static void saveData(String filename, HashSet<TextFile> textFiles) {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(filename);
+            
+            fw.write(String.valueOf(textFiles.size()) + '\n');
+            
+            String[] list = new String[textFiles.size()];
+            int index = 0;
+            for( TextFile text : textFiles ){
+                list[index++] = text.getLanguage() + ' ' + text.getFilename() + '\n';
+            }
+            Arrays.sort(list);
+            
+            for(int i = 0; i < list.length; i++)
+                fw.write(list[i]);
+            
+            fw.close();
+        } catch (IOException ex) {
+            System.out.println("WARN: Blad zapisu do pliku " + filename);
+            //e.printStackTrace();
+        } finally {
+            try {
+                fw.close();
+            } catch (IOException ex) {
+                //do nothing
+            }
         }
     }
 
