@@ -63,12 +63,12 @@ public class Gui extends javax.swing.JFrame {
         dataNameTextField = new javax.swing.JTextField();
         dataOpenButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
         addFileButton = new javax.swing.JButton();
         clearLanguagesButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textLanguageList = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         learnRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
@@ -78,7 +78,7 @@ public class Gui extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Language Recognition");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24));
         jLabel1.setText("Language Recognition");
 
         jLabel2.setText("Aktualna sieć:");
@@ -106,7 +106,7 @@ public class Gui extends javax.swing.JFrame {
         netSaveButton.setText("Zapisz sieć");
 
         languageList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "PL", "DE", "FR" };
+            String[] strings = { "PL", "DE", "FR", "ES", "EN" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -133,10 +133,6 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel4.setText("Aktualne dane:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
         jLabel5.setText("Pary (język - tekst):");
 
         exitButton.setText("Wyjdź");
@@ -155,6 +151,8 @@ public class Gui extends javax.swing.JFrame {
 
         clearLanguagesButton.setText("Wyczyść");
         clearLanguagesButton.setActionCommand("Wyczyść języki");
+
+        jScrollPane2.setViewportView(textLanguageList);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -200,11 +198,9 @@ public class Gui extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(clearLanguagesButton))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(273, 273, 273))
-                            .addComponent(jScrollPane2)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(startButton)
@@ -250,10 +246,9 @@ public class Gui extends javax.swing.JFrame {
                                 .addComponent(addLanguageButton)
                                 .addGap(68, 68, 68)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(clearLanguagesButton)
-                        .addGap(7, 7, 7))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                .addGap(19, 19, 19)
+                        .addComponent(clearLanguagesButton))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startButton)
                     .addComponent(exitButton))
@@ -482,7 +477,6 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JList languageList;
     private javax.swing.JRadioButtonMenuItem learnRadioButtonMenuItem;
     private javax.swing.JTextField netNameTextField;
@@ -490,5 +484,6 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JButton netSaveButton;
     private javax.swing.JButton startButton;
     private javax.swing.JRadioButtonMenuItem testRadioButtonMenuItem;
+    private javax.swing.JList textLanguageList;
     // End of variables declaration//GEN-END:variables
 }

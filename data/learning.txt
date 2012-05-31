@@ -1,4 +1,4 @@
-12
+20
 DE data/DE/die_toten_hosen_-_100_tage_bis_zum_untergang
 DE data/DE/lafee_-_wer_bin_ich
 DE data/DE/lewis_caroll_-_alices_abenteuer_im_wunderland
@@ -11,3 +11,12 @@ PL data/PL/mrozu_-_miliony_monet
 PL data/PL/natalia_kukulska_-_wiernosc_jest_nudna
 PL data/PL/tomasz_jachimek_-_piosenka_o_corce
 PL data/PL/william_shakespeare_-_romeo_i_julia
+ES data/ES/La_revista_exclusiva_de_los_socios_y_mardidistas
+ES data/ES/Ya_esta_a_la_venta_la_nueva_camiseta
+ES data/ES/El_Real_Madrid_necesita_ganar_en_el_Buesa_Arena_para_forzar_el_quinto_partido
+ES data/ES/Toril_cumplio_contra_el_Cadiz_130_partidos_como_entrenador_de_La_Fabrica
+EN data/EN/Retired_justice_says_campaign_finance_ruling_made_cash_king
+EN data/EN/Man_Killed_in_Homemade_Plane_Crash
+EN data/EN/Air_Force's_Secretive_X-37B_Space_Plane_Will_Land_Soon
+EN data/EN/'Serpent-Handling'_West_Virginia_Pastor_Dies_From_Snake_Bite
+
