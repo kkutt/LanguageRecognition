@@ -1,6 +1,8 @@
 package ssn.gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.encog.neural.networks.BasicNetwork;
 import ssn.file.DataFile;
@@ -77,6 +80,7 @@ public class Gui extends javax.swing.JFrame {
         clearLanguagesButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         textLanguageList = new javax.swing.JList();
+        clearFilesButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         learnRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
@@ -114,6 +118,11 @@ public class Gui extends javax.swing.JFrame {
         });
 
         netSaveButton.setText("Zapisz sieć");
+        netSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                netSaveButtonActionPerformed(evt);
+            }
+        });
 
         languageList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "CZ", "DE", "EN", "ES", "EZ", "FR", "HU", "IT", "LA", "PL", "SK" };
@@ -125,8 +134,18 @@ public class Gui extends javax.swing.JFrame {
         jLabel3.setText("Lista języków:");
 
         addLanguageButton.setText("Dodaj język");
+        addLanguageButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLanguageButtonActionPerformed(evt);
+            }
+        });
 
         dataSaveButton.setText("Zapisz dane");
+        dataSaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataSaveButtonActionPerformed(evt);
+            }
+        });
 
         dataNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +187,13 @@ public class Gui extends javax.swing.JFrame {
         });
 
         jScrollPane2.setViewportView(textLanguageList);
+
+        clearFilesButton.setText("Wyczyść");
+        clearFilesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearFilesButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -213,14 +239,16 @@ public class Gui extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(clearLanguagesButton))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(startButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(exitButton)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(clearFilesButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(startButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(exitButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -263,10 +291,15 @@ public class Gui extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(clearLanguagesButton))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(startButton)
-                    .addComponent(exitButton))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(startButton)
+                            .addComponent(exitButton)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clearFilesButton)))
                 .addContainerGap())
         );
 
@@ -426,7 +459,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_dataOpenButtonActionPerformed
 
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        JDialog about = new JDialog(this, "O programie", true);
+        final JDialog about = new JDialog(this, "O programie", true);
         about.add(new JLabel("<html><h1>LanguageRecognition</h1><hr>"
                 + "<h3>Projekt przygotowany na przedmiot Sztuczne Sieci Neuronowe 2011/2012."
                 + "<br>"
@@ -460,7 +493,7 @@ public class Gui extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
+                about.setVisible(false);
             }
         });
         
@@ -483,6 +516,62 @@ public class Gui extends javax.swing.JFrame {
     private void clearLanguagesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearLanguagesButtonActionPerformed
         languageList.setListData(new Vector<String>());
     }//GEN-LAST:event_clearLanguagesButtonActionPerformed
+
+    private void clearFilesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFilesButtonActionPerformed
+         textLanguageList.setListData(new Vector<String>());
+    }//GEN-LAST:event_clearFilesButtonActionPerformed
+
+    private void dataSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSaveButtonActionPerformed
+        if (dataNameTextField.getText().isEmpty())
+            dataFileName = "saved_data";
+        else
+            dataFileName = dataNameTextField.getText();
+        dataFileName += ".txt";
+    }//GEN-LAST:event_dataSaveButtonActionPerformed
+
+    private void netSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netSaveButtonActionPerformed
+        if(netNameTextField.getText().isEmpty())
+            networkFileName = "saved_net";
+        else
+            networkFileName = netNameTextField.getText();
+        networkFileName += ".net";
+    }//GEN-LAST:event_netSaveButtonActionPerformed
+
+    private void addLanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLanguageButtonActionPerformed
+        final JDialog langDialog = new JDialog(this, "Dodaj język", true);
+        JLabel title = new JLabel("Język:");
+        JTextField lang = new JTextField();
+        JButton ok = new JButton("Ok");
+        ok.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                langDialog.setVisible(false);
+            }
+        });
+        
+        JButton cancel = new JButton("Anuluj");
+        cancel.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+        });
+        
+        
+        JPanel langPanel = new JPanel();
+        langPanel.setLayout(new GridLayout(2,2,5,5));
+        langPanel.add(title);
+        langPanel.add(lang);
+        langPanel.add(ok);
+        langPanel.add(cancel);
+        
+        langDialog.add(langPanel, BorderLayout.CENTER );
+        langDialog.setSize(150,100);
+        langDialog.setResizable(false);
+        langDialog.setVisible(true);
+    }//GEN-LAST:event_addLanguageButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -545,6 +634,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton addLanguageButton;
+    private javax.swing.JButton clearFilesButton;
     private javax.swing.JButton clearLanguagesButton;
     private javax.swing.JTextField dataNameTextField;
     private javax.swing.JButton dataOpenButton;
