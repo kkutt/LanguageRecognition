@@ -34,6 +34,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Testy"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="testRadioButtonMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
