@@ -1,5 +1,6 @@
 package ssn.network;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.MLData;
@@ -22,9 +23,9 @@ public class NetworkUtils {
     /**
      * Przygotowanie zestawu danych dla sieci
      */
-    public static MLDataSet prepareDataSet(HashSet<TextFile> textFiles) {
+    public static MLDataSet prepareDataSet(HashSet<TextFile> textFiles, String[] langs) {
         double[][] input = NetworkUtils.prepareInput(textFiles);
-        double[][] response = NetworkUtils.prepareResponse(textFiles);
+        double[][] response = NetworkUtils.prepareResponse(textFiles,langs);
         return new BasicMLDataSet(input, response);
     }
     
@@ -52,10 +53,10 @@ public class NetworkUtils {
     /**
      * Przygotowanie idealnej odpowiedzi sieci
      */
-    private static double[][] prepareResponse(HashSet<TextFile> textFiles){
+    private static double[][] prepareResponse(HashSet<TextFile> textFiles, String[] langs){
         int dataQuantity = textFiles.size();
-        int langQuantity = dataFile.getLangQuantity();
-        int errorsQuantity = dataFile.howManyErrors();
+        int langQuantity = langs.length;
+        int errorsQuantity = DataFile.howManyErrors(textFiles);
         double response[][] = new double[dataQuantity-errorsQuantity][langQuantity];
         int index = 0;
         
@@ -64,10 +65,9 @@ public class NetworkUtils {
             for(int j = 0; j < langQuantity; j++)
                 response[i][j] = 0.0;
         
-        for(int i = 0; i < dataQuantity; i++) {
-            TextFile textFile = dataFile.getTextFile(i);
-            if( ! textFile.hasError() ){
-                response[i][textFile.getLanguage()] = 1.0;   //ustawianie wlasciwego jezyka dla kazdego z plikow
+        for(TextFile text : textFiles) {
+            if( ! text.hasError() ){
+                response[index][Arrays.binarySearch(langs, text.getLanguage())] = 1.0;   //ustawianie wlasciwego jezyka dla kazdego z plikow
                 index++;
             }
         }

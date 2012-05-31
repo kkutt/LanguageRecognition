@@ -32,6 +32,10 @@ public class TextFile {
     public String getLanguage() {
         return language;
     }
+
+    public String getFilename() {
+        return filename;
+    }
     
     public double[] getLettersQuantity() {
         if( counted == false )

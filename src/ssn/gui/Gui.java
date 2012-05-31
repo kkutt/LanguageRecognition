@@ -11,8 +11,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.encog.neural.networks.BasicNetwork;
 import ssn.file.DataFile;
 import ssn.file.TextFile;
+import ssn.network.NetworkModes;
 
 /**
  *
@@ -29,6 +31,8 @@ public class Gui extends javax.swing.JFrame {
     //lista jezykow: languageList
     //langQuantity - z listy jezykow
     //dataQuantity - z textFiles
+    
+    BasicNetwork network;
     
     Mode mode;
     public enum Mode { LEARN, TEST }
@@ -308,14 +312,40 @@ public class Gui extends javax.swing.JFrame {
         networkFileName = "";
         dataFileName = "";
         textFiles = new HashSet<TextFile>();
+        network = null;
         mode = Mode.LEARN;
     }
     
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        
+        if(textFiles.isEmpty()) {
+            System.out.println("ERROR: Brak plikow");
+            return;
+        }
+        
+        int langsQuantity = languageList.getModel().getSize();
+        
+        if(langsQuantity == 0) {
+            System.out.println("ERROR: Brak jezykow");
+            return;
+        }
+        
+        String langs[] = new String[langsQuantity];
+        for(int i = 0; i < langsQuantity; i++) {
+            langs[i] = (String) languageList.getModel().getElementAt(i);
+        }
+        
         if( mode == Mode.LEARN ) {
-            //TODO: uczenie i wyswietleneie wynikow
+            network = NetworkModes.learn(textFiles, langs);
+            //TODO: poprawic wyswietlanie wynikow
+            
         } else if ( mode == Mode.TEST ) {
-            //TODO: test i wyswietleneie wynikow
+            if(network == null) {
+                System.out.println("ERROR: Wczesniej naucz siec!");
+                return;
+            }
+            NetworkModes.test(textFiles, langs, network);
+            //TODO: poprawic wyswietlanie wynikow
         }
         
     }//GEN-LAST:event_startButtonActionPerformed
@@ -359,7 +389,7 @@ public class Gui extends javax.swing.JFrame {
             String newTextFileName = addFileChooser.getSelectedFile().getPath();
             TextFile newTextFile = new TextFile(newTextFileName,addFileLanguage);
             textFiles.add(newTextFile);
-            // TODO: aktualizacja listy par
+            refreshPairList();
         }
     }//GEN-LAST:event_addFileButtonActionPerformed
 
@@ -373,7 +403,7 @@ public class Gui extends javax.swing.JFrame {
             dataNameTextField.setText(dataFileName.substring(dataFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
             DataFile.loadData(dataFileName, textFiles);
             //TODO: zaktualizowac liste jezykow
-            //TODO: wyswietlic listy par
+            refreshPairList();
         }
     }//GEN-LAST:event_dataOpenButtonActionPerformed
 
@@ -416,7 +446,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_learnRadioButtonMenuItemActionPerformed
 
     private void testRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testRadioButtonMenuItemActionPerformed
-        // TODO add your handling code here:
+        mode = Mode.TEST;
     }//GEN-LAST:event_testRadioButtonMenuItemActionPerformed
 
     /**
@@ -456,13 +486,21 @@ public class Gui extends javax.swing.JFrame {
     }
     
     
-    // TODO: poprawić tutaj jak chodzi o przesyłanie ktory tryb jest, moze lepiej w druga strone, 
-    // ze jak tu zajdzie zmiana, to zmienia tam, trza przemyslec 
-    // koncze na dzis ;)
-    
-    public String getSelectedMode(){
-        return modeChooseButtonGroup.getSelection().getActionCommand();
-    };
+    private void refreshPairList() {
+        
+        final String model[] = new String[ textFiles.size() ];
+        int index = 0;
+        for( TextFile text : textFiles ) {
+            model[index] = text.getLanguage() + " - " + text.getFilename();
+            index++;
+        }
+        
+        textLanguageList.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = model;
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+    }
     
     
     private javax.swing.ButtonGroup modeChooseButtonGroup = new ButtonGroup();
