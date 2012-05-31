@@ -316,11 +316,11 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_startButtonActionPerformed
 
     private void netNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netNameTextFieldActionPerformed
-        // TODO add your handling code here:
+        // TODO nothing?
     }//GEN-LAST:event_netNameTextFieldActionPerformed
 
     private void dataNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNameTextFieldActionPerformed
-        // TODO add your handling code here:
+        // TODO nothing?
     }//GEN-LAST:event_dataNameTextFieldActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed

@@ -1,5 +1,6 @@
 package ssn.network;
 
+import java.util.HashSet;
 import org.encog.engine.network.activation.ActivationSigmoid;
 import org.encog.ml.data.MLData;
 import org.encog.ml.data.MLDataPair;
@@ -21,9 +22,9 @@ public class NetworkUtils {
     /**
      * Przygotowanie zestawu danych dla sieci
      */
-    public static MLDataSet prepareDataSet(DataFile testDataFile) {
-        double[][] input = NetworkUtils.prepareInput(testDataFile);
-        double[][] response = NetworkUtils.prepareResponse(testDataFile);
+    public static MLDataSet prepareDataSet(HashSet<TextFile> textFiles) {
+        double[][] input = NetworkUtils.prepareInput(textFiles);
+        double[][] response = NetworkUtils.prepareResponse(textFiles);
         return new BasicMLDataSet(input, response);
     }
     
@@ -31,16 +32,15 @@ public class NetworkUtils {
     /**
      * Przygotowanie danych wejsciowych do sieci
      */
-    private static double[][] prepareInput(DataFile dataFile){
-        int dataQuantity = dataFile.getDataQuantity();
-        int errorsQuantity = dataFile.howManyErrors();
+    private static double[][] prepareInput(HashSet<TextFile> textFiles){
+        int dataQuantity = textFiles.size();
+        int errorsQuantity = DataFile.howManyErrors(textFiles);
         double input[][] = new double[dataQuantity-errorsQuantity][26];
         int index = 0;
         
-        for(int i = 0; i < dataQuantity; i++) {
-            TextFile textFile = dataFile.getTextFile(i);
-            if( ! textFile.hasError() ){
-                double quantity[] = textFile.getLettersQuantity();
+        for(TextFile text : textFiles) {
+            if( ! text.hasError() ){
+                double quantity[] = text.getLettersQuantity();
                 input[index] = quantity;   //wczytanie czestotliwosci dla kazdego z plikow
                 index++;
             }
@@ -52,8 +52,8 @@ public class NetworkUtils {
     /**
      * Przygotowanie idealnej odpowiedzi sieci
      */
-    private static double[][] prepareResponse(DataFile dataFile){
-        int dataQuantity = dataFile.getDataQuantity();
+    private static double[][] prepareResponse(HashSet<TextFile> textFiles){
+        int dataQuantity = textFiles.size();
         int langQuantity = dataFile.getLangQuantity();
         int errorsQuantity = dataFile.howManyErrors();
         double response[][] = new double[dataQuantity-errorsQuantity][langQuantity];
