@@ -33,6 +33,7 @@ public class Gui extends javax.swing.JFrame {
     /* zmienne */
     String networkFileName;
     String dataFileName;
+    String newLang;
     
     HashSet<TextFile> textFiles;
     //lista jezykow: languageList
@@ -365,6 +366,7 @@ public class Gui extends javax.swing.JFrame {
         textFiles = new HashSet<TextFile>();
         network = null;
         mode = Mode.LEARN;
+        newLang = "";
     }
     
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
@@ -540,12 +542,14 @@ public class Gui extends javax.swing.JFrame {
     private void addLanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLanguageButtonActionPerformed
         final JDialog langDialog = new JDialog(this, "Dodaj język", true);
         JLabel title = new JLabel("Język:");
-        JTextField lang = new JTextField();
+        final JTextField lang = new JTextField();
         JButton ok = new JButton("Ok");
         ok.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                newLang = lang.getText();
+                // TODO: uruchom funkcje sort dodajac newLang do listy jezykow
                 langDialog.setVisible(false);
             }
         });
@@ -555,7 +559,7 @@ public class Gui extends javax.swing.JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                langDialog.setVisible(false);
             }
         });
         
