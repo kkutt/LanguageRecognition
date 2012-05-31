@@ -21,6 +21,12 @@ import ssn.file.TextFile;
  */
 public class NetworkUtils {
     
+    static String testInfo = "";
+    
+    public static String getTestInfo(){
+        return "<html>" + testInfo + "</html>";
+    }
+    
     /**
      * Przygotowanie zestawu danych dla sieci
      */
@@ -97,6 +103,7 @@ public class NetworkUtils {
      */
     public static void testNetwork(BasicNetwork network, MLDataSet testSet, String[] langs) {
         System.out.println("Test Results:\n");
+        testInfo = "<h2>Test Results:</h2><ol>";
         int test = 0;
         int succ = 0;
         int outputSize = network.getOutputCount();
@@ -104,6 +111,7 @@ public class NetworkUtils {
         for(MLDataPair pair : testSet ) {
             test++;
             System.out.println("=== Test #" + test + " ===");
+            testInfo += "<li>Test " + test + " : <ul>"; 
             
             final MLData output = network.compute(pair.getInput());
             int idealRes = 0;
@@ -116,7 +124,7 @@ public class NetworkUtils {
                 }
             }
             System.out.println("Ideal response:   " + langs[idealRes]);
-            
+            testInfo += "<li>Ideal response: " + langs[idealRes] + "</li>";
             double[] networkResponse = output.getData();
             for(int i = 0; i < outputSize; i++) {
                 if( networkResponse[i] > networkResponse[networkRes] ) {   //jako odpowiedz sieci wybieramy neuron, na ktorym
@@ -124,13 +132,14 @@ public class NetworkUtils {
                 }
             }
             System.out.println("Network response: " + langs[networkRes] + " [ prob: " + networkResponse[networkRes] + "]");
-            
+            testInfo += "<li>Network response: " + langs[networkRes] + "</li><li>Probability: " + networkResponse[networkRes] + "</li></ul></li>";
             if( networkRes == idealRes )
                 succ++;
             
             System.out.println();
+            
         }
-        
+        testInfo += "</ol><p>Effectiveness: " + (double)succ/(double)test + "</p>";
         System.out.println("Effectiveness: " + (double)succ/(double)test);
         
     }

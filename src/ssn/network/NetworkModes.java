@@ -14,13 +14,20 @@ import ssn.file.TextFile;
  * @author Michal Nowak
  */
 public class NetworkModes {
+    
+    static String learnInfo = "";
+    
+    public static String getLearnInfo(){
+        return "<html>" + learnInfo + "</html>";
+    }    
+    
     /** 
      * tryb: nauka
      */
     public static BasicNetwork learn(HashSet<TextFile> textFiles, String[] langs) {
         
         System.out.println("Wybrany tryb: Nauka");
-        
+        learnInfo = "<h2>Learning</h2>";
         MLDataSet learnSet = NetworkUtils.prepareDataSet(textFiles, langs);
         BasicNetwork network = NetworkUtils.prepareNetwork(LanguageRecognition.LETTERS_COUNT,
                 LanguageRecognition.INNER_LAYER_SIZE, langs.length);
@@ -34,7 +41,7 @@ public class NetworkModes {
             epoch++;
         } while(learn.getError() > 0.01);
         System.out.println("Learning iterations: " + epoch + '\n');
-        
+        learnInfo += "<p>Iterations number: " + epoch;
         return network;
         
     }

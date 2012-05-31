@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -21,6 +22,7 @@ import org.encog.neural.networks.BasicNetwork;
 import ssn.file.DataFile;
 import ssn.file.TextFile;
 import ssn.network.NetworkModes;
+import ssn.network.NetworkUtils;
 
 /**
  *
@@ -297,7 +299,6 @@ public class Gui extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jMenu2.setMnemonic('T');
         jMenu2.setText("Tryb");
 
         learnRadioButtonMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK));
@@ -364,7 +365,10 @@ public class Gui extends javax.swing.JFrame {
     
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         
+        String info = "";
+        
         if(textFiles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Brak plików", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.out.println("ERROR: Brak plikow");
             return;
         }
@@ -372,6 +376,7 @@ public class Gui extends javax.swing.JFrame {
         int langsQuantity = languageList.getModel().getSize();
         
         if(langsQuantity == 0) {
+            JOptionPane.showMessageDialog(this, "Brak języków", "ERROR", JOptionPane.ERROR_MESSAGE);
             System.out.println("ERROR: Brak jezykow");
             return;
         }
@@ -383,15 +388,55 @@ public class Gui extends javax.swing.JFrame {
         
         if( mode == Mode.LEARN ) {
             network = NetworkModes.learn(textFiles, langs);
-            //TODO: poprawic wyswietlanie wynikow
-            
+            info = NetworkModes.getLearnInfo();
         } else if ( mode == Mode.TEST ) {
             if(network == null) {
+                JOptionPane.showMessageDialog(this, "Wczesniej naucz siec!", "ERROR", JOptionPane.ERROR_MESSAGE);
                 System.out.println("ERROR: Wczesniej naucz siec!");
                 return;
             }
+            
             NetworkModes.test(textFiles, langs, network);
-            //TODO: poprawic wyswietlanie wynikow
+            info = NetworkUtils.getTestInfo();
+        }
+        
+        if(!info.isEmpty()){
+            String title;
+            if(mode == Mode.LEARN)
+                title = "Learning";
+            else
+                title = "Tests results";
+            final JDialog resultsDialog = new JDialog(this, title, true);
+            resultsDialog.add(new JLabel(info));
+            JButton ok = new JButton("Ok");
+            ok.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    resultsDialog.setVisible(false);
+                }
+            });
+            
+            JButton save = new JButton("Zapisz");
+            save.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    
+                }
+            });
+        
+            JPanel resultsPanel = new JPanel();
+            resultsPanel.add(ok);
+            resultsPanel.add(save);
+            resultsDialog.add(resultsPanel, BorderLayout.SOUTH);
+            if(mode == Mode.LEARN)
+                resultsDialog.setSize(150,180);
+            else
+                resultsDialog.setSize(300,800);
+        
+            resultsDialog.setResizable(false);
+            resultsDialog.setVisible(true);
         }
         
     }//GEN-LAST:event_startButtonActionPerformed
@@ -546,7 +591,6 @@ public class Gui extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newLang = lang.getText();
-                // TODO: uruchom funkcje sort dodajac newLang do listy jezykow
                 langDialog.setVisible(false);
             }
         });
