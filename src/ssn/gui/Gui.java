@@ -3,7 +3,11 @@ package ssn.gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.HashSet;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -157,6 +161,11 @@ public class Gui extends javax.swing.JFrame {
 
         clearLanguagesButton.setText("Wyczyść");
         clearLanguagesButton.setActionCommand("Wyczyść języki");
+        clearLanguagesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearLanguagesButtonActionPerformed(evt);
+            }
+        });
 
         jScrollPane2.setViewportView(textLanguageList);
 
@@ -375,7 +384,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser netChooser = new JFileChooser();
         FileNameExtensionFilter netFilter = new FileNameExtensionFilter("Pliki sieci (.net)", "net");
         netChooser.setFileFilter(netFilter);
-        int netResult = netChooser.showDialog(this, "Wybierz!");
+        int netResult = netChooser.showDialog(this, "Wybierz sieć");
         if(netResult == 0){
             networkFileName = netChooser.getSelectedFile().getPath();
             netNameTextField.setText(networkFileName.substring(networkFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
@@ -386,7 +395,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser addFileChooser = new JFileChooser();
         FileNameExtensionFilter addFileFilter = new FileNameExtensionFilter("Plik txt", "txt");
         addFileChooser.setFileFilter(addFileFilter);
-        int addFileResult = addFileChooser.showDialog(this, "Wybierz!");
+        int addFileResult = addFileChooser.showDialog(this, "Wybierz plik");
         int selectedLanguage = languageList.getSelectedIndex();
         String addFileLanguage;
         if (selectedLanguage == -1)
@@ -406,7 +415,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser dataChooser = new JFileChooser();
         FileNameExtensionFilter dataFilter = new FileNameExtensionFilter("Pliki danych (.txt)", "txt");
         dataChooser.setFileFilter(dataFilter);
-        int dataResult = dataChooser.showDialog(this, "Wybierz!");
+        int dataResult = dataChooser.showDialog(this, "Wybierz dane");
         if(dataResult == 0){
             dataFileName = dataChooser.getSelectedFile().getPath();
             dataNameTextField.setText(dataFileName.substring(dataFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
@@ -416,8 +425,7 @@ public class Gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dataOpenButtonActionPerformed
 
-    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
-        System.out.println("nie dupas");
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {                                              
         JDialog about = new JDialog(this, "O programie", true);
         about.add(new JLabel("<html><h1>LanguageRecognition</h1><hr>"
                 + "<h3>Projekt przygotowany na przedmiot Sztuczne Sieci Neuronowe 2011/2012."
@@ -448,9 +456,8 @@ public class Gui extends javax.swing.JFrame {
         about.add(aboutPanel, BorderLayout.SOUTH);
         about.setSize(500,400);
         about.setResizable(false);
-        System.out.println("dupa");
         about.setVisible(true);
-    }//GEN-LAST:event_aboutMenuActionPerformed
+    }                                         
 
     private void learnRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_learnRadioButtonMenuItemActionPerformed
         mode = Mode.LEARN;
@@ -459,6 +466,10 @@ public class Gui extends javax.swing.JFrame {
     private void testRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testRadioButtonMenuItemActionPerformed
         mode = Mode.TEST;
     }//GEN-LAST:event_testRadioButtonMenuItemActionPerformed
+
+    private void clearLanguagesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearLanguagesButtonActionPerformed
+        languageList.setListData(new Vector<String>());
+    }//GEN-LAST:event_clearLanguagesButtonActionPerformed
 
     /**
      * @param args the command line arguments

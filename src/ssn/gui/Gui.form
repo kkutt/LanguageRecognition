@@ -352,6 +352,9 @@
             <Property name="text" type="java.lang.String" value="Wyczy&#x15b;&#x107;"/>
             <Property name="actionCommand" type="java.lang.String" value="Wyczy&#x15b;&#x107; j&#x119;zyki"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clearLanguagesButtonActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>

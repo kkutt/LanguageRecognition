@@ -1,5 +1,6 @@
 package ssn.network;
 
+import com.sun.org.apache.bcel.internal.generic.GETFIELD;
 import java.util.Arrays;
 import java.util.HashSet;
 import org.encog.engine.network.activation.ActivationSigmoid;
@@ -67,7 +68,9 @@ public class NetworkUtils {
         
         for(TextFile text : textFiles) {
             if( ! text.hasError() ){
-                response[index][Arrays.binarySearch(langs, text.getLanguage())] = 1.0;   //ustawianie wlasciwego jezyka dla kazdego z plikow
+                String[] langsCopy = Arrays.copyOf(langs, langs.length);
+                Arrays.sort(langsCopy);
+                response[index][Arrays.binarySearch(langsCopy, text.getLanguage())] = 1.0;   //ustawianie wlasciwego jezyka dla kazdego z plikow
                 index++;
             }
         }
