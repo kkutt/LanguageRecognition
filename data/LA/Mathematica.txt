@@ -1,0 +1,23 @@
+Mathematica (-ae, f.) (Graece: ? µ???µ????? (scil. ??????µ? sive ?????) a voce µ?????? 'disco')[1] sive mathematice[2] sive mathesis dicitur doctrinalis scientia, quae abstractam considerat quantitatem variis aspectibus, qui sunt algebraica, geometrica, analytica. Mathematica, quae fundamenta in numeris, logica, et ratiocinatione habet, est lingua physicae et aliarum scientiarum quantitativarum. De mathematica Galilaeus Galilaei scripsit:
+“	Philosophia in hoc libro grandi scribitur, qui est universum semper nostris oculis oblatum. Hunc librum autem non possumus intellegere nisi imprimis eius linguam discere et litteras legere conamur. Liber lingua mathematica scriptus est et suae litterae sunt trianguli, circuli et aliae figurae geometricae. Eis litteris carentes haud singulam vocem librorum possumus intellegere; sine eis vagamur in labyrintho obscuro.	”
+—Aequator Galilaei Galilaei (Romae, 1623).[3]
+Hodie mathematica, tam necessaria in claves RSA securas creandas, partem magnam etiam agit in technologiis diversis, sicut in mercatura, communicationibus, televisionibus, et incolumitate interretiali vigilanda.
+
+Historia mathematicae brevis
+
+In principio, mathematica creata est ut commercium facilius fiat: ad terram metiendam, ad pretia calculanda, et ad tales res quae sequuntur. Qua de causa in partes tres divisa est mathematica quae, e.g., ad mutationes, structuras spatiaque pertinent: analysis, algebra, geometria. Partes autem mathematicae per aetates variant ob nova reperta et scientiam processam.
+[recensere]Antiquitas
+Aetate Romana, mathematica multas et diversas disciplinas cohibuit, sicut musicam et astronomiam, quas hodie ut mathematicales non habemus. Exempli gratia, Isidori Hispalensis saeculo septimo scripsit de mathematica:
+“	Mathematica Latine dicitur doctrinalis scientia, quae abstractam considerat quantitatem. Abstracta enim quantitas est, quam intellectu a materia separantes vel ab aliis accidentibus, ut est par, inpar, vel ab aliis huiuscemodi in sola ratiocinatione tractamus. Cuius species sunt quattuor: id est Arithmetica, Musica, Geometria et Astronomia. Arithmetica est disciplina quantitatis numerabilis secundum se ipsam. Musica est disciplina quae de numeris loquitur, qui inveniuntur in sonis. Geometria est disciplina magnitudinis et formarum. Astronomia est disciplina quae cursus caelestium siderum atque figuras contemplatur omnes atque habitudines stellarum. Quas disciplinas deinceps paulo latius indicamus, ut earum causae competenter possint ostendi.	”
+—De etymologiarum libro III Isidori Hispalensis[4]
+Iam saeculo XVII, ut a Cartesii Newtonique verbis censamus, autem, soli mathematici dicuntur homines qui methodos novas colunt quantitativas.[5]
+[recensere]Algebra et geometria a Renato Cartesio coniunctae
+ Si plus cognoscere vis, vide algebra et geometria
+
+Mathematici, ut bonae mathematicae exemplar, geometriam classicam a Euclide formulatam diu habent. Euclides enim demonstravit quinque axiomata satis esse de quibus omnia argumenta geometrica per deductionem logicam derivari possunt.[6] De arithmetica quoque Euclides theoremata demonstravit, exempli gratia quot sint numeri primi.
+A mathematicis Arabicis Indicisque saecula primum ad septimum decimum, multae contributiones amplae, sicut systema numericum decimale, functiones sinusoidales, et algebra, ad Europam transmissae sunt.[7] Ibi Europae saeculo XVII Renatus Cartesius, cum puncta in spatio a tribus numeris expressit, geometriam et algebram iunxit, geometriam analyticam comperiens,[8] ut hodie omnes agnoscant aequationem
+
+ut circuli aequatio ubi x et y sunt numeri coordinati planitiae et R est circuli radius, et similiter alias huius modi aequationes.
+[recensere]Calculus, analysis fundamentum
+ Si plus cognoscere vis, vide calculus et analysis
+Isaacus Newtonus libro Philosophiae naturalis principia mathematica anni 1687 magnopere mathematicam protulit, monstrando sola tria axiomata (et tantas virum leges) in aequationum mathematicalum forma satis esse ut omnia phenomena physica demonstrentur. Ambo Newtonus et Leibnitius item analysim magnopere protulerunt cum calculus deinde comminiscuntur. Subsequenter Gauss, Eulerus, Lagrange, Hamilton et alii calculum et analysim novis methodis, functionibus, theorematisque etiam protulerunt, functiones exponentiales logarithmicasque, calculum vectoralem, et methodos aequationes differentiales solvendi invenientes.

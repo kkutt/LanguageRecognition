@@ -116,7 +116,7 @@ public class Gui extends javax.swing.JFrame {
         netSaveButton.setText("Zapisz sieć");
 
         languageList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "PL", "DE", "FR", "ES", "EN" };
+            String[] strings = { "CZ", "DE", "EN", "ES", "EZ", "FR", "HU", "IT", "LA", "PL", "SK" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -437,8 +437,21 @@ public class Gui extends javax.swing.JFrame {
                 + "występowania liter. Wykorzystano sieć neuronową."
                 + "<br>"
                 + "<br>"
-                + "Przygotowano przykładowy zbiór tekstów w pięciu językach: "
-                + "DE, FR, PL, ES, EN do nauki i testowania sieci. "
+                + "Przygotowano przykładowy zbiór tekstów do nauki i testowania sieci przygotowano w jedynastu językach: "
+                + "<ul>"
+                + "<li>CZ - czeski</li>"
+                + "<li>DE - niemiecki</li>"
+                + "<li>EN - angielski</li>"
+                + "<li>ES - hiszpański</li>"
+                + "<li>EZ - esperanto</li>"
+                + "<li>FR - francuski</li>"
+                + "<li>HU - węgierski</li>"
+                + "<li>IT - włoski</li>"
+                + "<li>LA - łacina</li>"
+                + "<li>PL - polski</li>"
+                + "<li>SK - słowacki</li>"
+                + "</ul>"
+                + "<br>"
                 + "Nic nie stoi na przeszkodzie, aby program rozszerzać "
                 + "o dowolną ilość rozpoznawanych języków - "
                 + "wymagany jest tylko odpowiedni materiał do nauki dla sieci.</html>"));
@@ -454,7 +467,7 @@ public class Gui extends javax.swing.JFrame {
         JPanel aboutPanel = new JPanel();
         aboutPanel.add(ok);
         about.add(aboutPanel, BorderLayout.SOUTH);
-        about.setSize(500,400);
+        about.setSize(500,600);
         about.setResizable(false);
         about.setVisible(true);
     }                                         
