@@ -266,6 +266,11 @@ public class Gui extends javax.swing.JFrame {
         testRadioButtonMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK));
         modeChooseButtonGroup.add(testRadioButtonMenuItem);
         testRadioButtonMenuItem.setText("Testy");
+        testRadioButtonMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                testRadioButtonMenuItemActionPerformed(evt);
+            }
+        });
         jMenu2.add(testRadioButtonMenuItem);
 
         jMenuBar1.add(jMenu2);
@@ -395,6 +400,10 @@ public class Gui extends javax.swing.JFrame {
     private void learnRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_learnRadioButtonMenuItemActionPerformed
         mode = Mode.LEARN;
     }//GEN-LAST:event_learnRadioButtonMenuItemActionPerformed
+
+    private void testRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testRadioButtonMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_testRadioButtonMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
