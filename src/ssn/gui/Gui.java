@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Vector;
@@ -19,7 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.encog.neural.networks.BasicNetwork;
+import ssn.LanguageRecognition;
 import ssn.file.DataFile;
+import ssn.file.NetworkFile;
 import ssn.file.TextFile;
 import ssn.network.NetworkModes;
 import ssn.network.NetworkUtils;
@@ -422,7 +426,22 @@ public class Gui extends javax.swing.JFrame {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    
+                    FileWriter fw = null;
+                    try {
+                        fw = new FileWriter("TestResults.html");
+                        if(mode == Mode.LEARN)
+                            fw.write(NetworkModes.getLearnInfo());
+                        else
+                            fw.write(NetworkUtils.getTestInfo());
+                        fw.close();
+                    } catch (IOException ex) {
+                        System.out.println("WARN: Blad zapisu do pliku TestResults.html");
+                    } finally {
+                        try {
+                            fw.close();
+                        } catch (IOException ex) {
+                        }
+                    }
                 }
             });
         
@@ -462,6 +481,7 @@ public class Gui extends javax.swing.JFrame {
         if(netResult == 0){
             networkFileName = netChooser.getSelectedFile().getPath();
             netNameTextField.setText(networkFileName.substring(networkFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
+            network = NetworkFile.loadNetworkFromFile(networkFileName);
         }
     }//GEN-LAST:event_netOpenButtonActionPerformed
 
@@ -477,7 +497,6 @@ public class Gui extends javax.swing.JFrame {
             addFileLanguage = "PL";
         else
             addFileLanguage = languageList.getSelectedValue().toString();
-        System.out.println("jezyk to: " + addFileLanguage);
         if(addFileResult == 0){
             String newTextFileName = addFileChooser.getSelectedFile().getPath();
             TextFile newTextFile = new TextFile(newTextFileName,addFileLanguage);
@@ -567,18 +586,20 @@ public class Gui extends javax.swing.JFrame {
 
     private void dataSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSaveButtonActionPerformed
         if (dataNameTextField.getText().isEmpty())
-            dataFileName = "saved_data";
+            dataFileName = LanguageRecognition.DEFAULT_DATA_FILENAME;
         else
             dataFileName = dataNameTextField.getText();
         dataFileName += ".txt";
+        DataFile.saveData(dataFileName, textFiles);
     }//GEN-LAST:event_dataSaveButtonActionPerformed
 
     private void netSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_netSaveButtonActionPerformed
         if(netNameTextField.getText().isEmpty())
-            networkFileName = "saved_net";
+            networkFileName = LanguageRecognition.DEFAULT_NETWORK_FILENAME;
         else
             networkFileName = netNameTextField.getText();
         networkFileName += ".net";
+        NetworkFile.saveNetworkToFile(network, networkFileName);
     }//GEN-LAST:event_netSaveButtonActionPerformed
 
     private void addLanguageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLanguageButtonActionPerformed
@@ -591,6 +612,7 @@ public class Gui extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 newLang = lang.getText();
+                sortLanguageList(true);
                 langDialog.setVisible(false);
             }
         });
@@ -694,12 +716,20 @@ public class Gui extends javax.swing.JFrame {
     
     /** 
      * sortuje aktualna liste jezykow (do wykorzystania przy dodawaniu nowego jezyka)
+     * 
+     * @param newElement czy do listy zostal dodany nowy element i znajduje sie w zmiennej
+     *                   globalnej String newLang?
      */
-    private void sortLanguageList() {
-        final String[] model = new String[languageList.getModel().getSize()];
+    private void sortLanguageList(boolean newElement) {
+        int elem = 0;
+        if(newElement)
+            elem = 1;
+        final String[] model = new String[languageList.getModel().getSize() + elem];
         for( int i = 0; i < languageList.getModel().getSize(); i++) {
             model[i] = (String) languageList.getModel().getElementAt(i);
         }
+        if(newElement)
+            model[model.length-1] = newLang;
         Arrays.sort(model);
         languageList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = model;
