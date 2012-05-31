@@ -78,6 +78,7 @@ public class Gui extends javax.swing.JFrame {
         learnRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         testRadioButtonMenuItem = new javax.swing.JRadioButtonMenuItem();
         aboutMenu = new javax.swing.JMenu();
+        aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Language Recognition");
@@ -87,6 +88,7 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel2.setText("Aktualna sieć:");
 
+        startButton.setMnemonic('S');
         startButton.setText("Start!");
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -259,6 +261,7 @@ public class Gui extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jMenu2.setMnemonic('T');
         jMenu2.setText("Tryb");
 
         learnRadioButtonMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.ALT_MASK));
@@ -284,12 +287,18 @@ public class Gui extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        aboutMenu.setText("O programie");
-        aboutMenu.addActionListener(new java.awt.event.ActionListener() {
+        aboutMenu.setMnemonic('P');
+        aboutMenu.setText("Pomoc");
+
+        aboutMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
+        aboutMenuItem.setText("O programie");
+        aboutMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aboutMenuActionPerformed(evt);
+                aboutMenuItemActionPerformed(evt);
             }
         });
+        aboutMenu.add(aboutMenuItem);
+
         jMenuBar1.add(aboutMenu);
 
         setJMenuBar(jMenuBar1);
@@ -407,20 +416,30 @@ public class Gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dataOpenButtonActionPerformed
 
-    //TODO: albo naprawic to, albo wywalic obie opcje ujda!
     
-    private void aboutMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuActionPerformed
+    private void learnRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_learnRadioButtonMenuItemActionPerformed
+        mode = Mode.LEARN;
+    }//GEN-LAST:event_learnRadioButtonMenuItemActionPerformed
+
+    private void testRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testRadioButtonMenuItemActionPerformed
+        mode = Mode.TEST;
+    }//GEN-LAST:event_testRadioButtonMenuItemActionPerformed
+
+    private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         System.out.println("nie dupas");
         JDialog about = new JDialog(this, "O programie", true);
         about.add(new JLabel("<html><h1>LanguageRecognition</h1><hr>"
                 + "<h3>Projekt przygotowany na przedmiot Sztuczne Sieci Neuronowe 2011/2012."
+                + "<br>"
                 + "Autorzy: Krzysztof Kutt & Michał Nowak (wtorek 10:00)."
+                + "<br>"
                 + "<br>"
                 + "Aplikacja ma na celu rozpoznawanie języka zadanego tekstu na podstawie częstotliwości"
                 + "występowania liter. Wykorzystano sieć neuronową."
                 + "<br>"
-                + "Przygotowano przykładowy zbiór tekstów w trzech językach: "
-                + "DE, FR, PL do nauki i testowania sieci. "
+                + "<br>"
+                + "Przygotowano przykładowy zbiór tekstów w pięciu językach: "
+                + "DE, FR, PL, ES, EN do nauki i testowania sieci. "
                 + "Nic nie stoi na przeszkodzie, aby program rozszerzać "
                 + "o dowolną ilość rozpoznawanych języków - "
                 + "wymagany jest tylko odpowiedni materiał do nauki dla sieci.</html>"));
@@ -436,7 +455,8 @@ public class Gui extends javax.swing.JFrame {
         JPanel aboutPanel = new JPanel();
         aboutPanel.add(ok);
         about.add(aboutPanel, BorderLayout.SOUTH);
-        about.setSize(200,400);
+        about.setSize(500,400);
+        about.setResizable(false);
         System.out.println("dupa");
         about.setVisible(true);
     }//GEN-LAST:event_aboutMenuActionPerformed
@@ -507,6 +527,7 @@ public class Gui extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu aboutMenu;
+    private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JButton addFileButton;
     private javax.swing.JButton addLanguageButton;
     private javax.swing.JButton clearLanguagesButton;
