@@ -1,7 +1,6 @@
 package ssn;
 
 import java.awt.EventQueue;
-import javax.swing.JFrame;
 import org.encog.Encog;
 import org.encog.ml.data.MLDataSet;
 import org.encog.neural.networks.BasicNetwork;

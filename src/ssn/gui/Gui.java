@@ -1,19 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * Gui.java
- *
- * Created on 2012-05-30, 22:48:00
- */
 package ssn.gui;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -21,16 +10,28 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import ssn.file.DataFile;
 
 /**
  *
- * @author RiaL
+ * @author Krzysztof Kutt
+ * @author Michal Nowak
  */
 public class Gui extends javax.swing.JFrame {
 
+    /* zmienne */
+    String networkFileName;
+    String dataFileName;
+    
+    DataFile dataFile;
+    
+    Mode mode;
+    public enum Mode { LEARN, TEST }
+    
     /** Creates new form Gui */
     public Gui() {
         initComponents();
+        initVariables();
     }
 
     /** This method is called from within the constructor to
@@ -298,6 +299,13 @@ public class Gui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initVariables() {
+        networkFileName = "";
+        dataFileName = "";
+        dataFile = new DataFile();
+        mode = Mode.LEARN;
+    }
+    
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_startButtonActionPerformed
@@ -320,8 +328,8 @@ public class Gui extends javax.swing.JFrame {
         netChooser.setFileFilter(netFilter);
         int netResult = netChooser.showDialog(this, "Wybierz!");
         if(netResult == 0){
-            String netFilename = netChooser.getSelectedFile().getPath();
-            netNameTextField.setText(netFilename.substring(netFilename.lastIndexOf(System.getProperty("file.separator")) + 1));
+            networkFileName = netChooser.getSelectedFile().getPath();
+            netNameTextField.setText(networkFileName.substring(networkFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
         }
     }//GEN-LAST:event_netOpenButtonActionPerformed
 
@@ -338,7 +346,7 @@ public class Gui extends javax.swing.JFrame {
             addFileLanguage = languageList.getSelectedValue().toString();
         System.out.println("jezyk to: " + addFileLanguage);
         if(addFileResult == 0){
-            // TODO: co robi jak wybrano plik
+            // TODO: dodaje plik do listy plikow i wyswietla go na liscie par
         }
     }//GEN-LAST:event_addFileButtonActionPerformed
 
@@ -348,8 +356,10 @@ public class Gui extends javax.swing.JFrame {
         dataChooser.setFileFilter(dataFilter);
         int dataResult = dataChooser.showDialog(this, "Wybierz!");
         if(dataResult == 0){
-            String dataFilename = dataChooser.getSelectedFile().getPath();
-            dataNameTextField.setText(dataFilename.substring(dataFilename.lastIndexOf(System.getProperty("file.separator")) + 1));
+            String dataFileName = dataChooser.getSelectedFile().getPath();
+            dataNameTextField.setText(dataFileName.substring(dataFileName.lastIndexOf(System.getProperty("file.separator")) + 1));
+            dataFile = new DataFile(dataFileName);
+            //TODO: wyswietlic listy par
         }
     }//GEN-LAST:event_dataOpenButtonActionPerformed
 
@@ -388,7 +398,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuActionPerformed
 
     private void learnRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_learnRadioButtonMenuItemActionPerformed
-        // TODO add your handling code here:
+        mode = Mode.LEARN;
     }//GEN-LAST:event_learnRadioButtonMenuItemActionPerformed
 
     /**

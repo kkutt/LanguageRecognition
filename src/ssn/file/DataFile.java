@@ -31,6 +31,13 @@ public class DataFile {
     int dataQuantity;
     TextFile textFiles[];
 
+    public DataFile() {
+        filename = "";
+        langQuantity = 0;
+        dataQuantity = 0;
+        textFiles = null;
+    }
+    
     public DataFile(String filename) {
         this.filename = filename;
         loadData();
