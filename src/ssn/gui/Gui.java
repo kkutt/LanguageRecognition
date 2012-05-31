@@ -416,15 +416,6 @@ public class Gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_dataOpenButtonActionPerformed
 
-    
-    private void learnRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_learnRadioButtonMenuItemActionPerformed
-        mode = Mode.LEARN;
-    }//GEN-LAST:event_learnRadioButtonMenuItemActionPerformed
-
-    private void testRadioButtonMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testRadioButtonMenuItemActionPerformed
-        mode = Mode.TEST;
-    }//GEN-LAST:event_testRadioButtonMenuItemActionPerformed
-
     private void aboutMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutMenuItemActionPerformed
         System.out.println("nie dupas");
         JDialog about = new JDialog(this, "O programie", true);
