@@ -60,14 +60,13 @@ Sztuczne Sieci Neuronowe to modele matematyczne, stworzone na wzór naturalnych 
 znajdujących się w ludzkim mózgu. Każdy sztuczny neuron zbiera sygnały wejścia, dokonuje na nich
 odpowiedniej transformacji i zwraca odpowiednią wartość na wyjściu. Sztuczna sieć neuronowa może
 składać się z tysięcy takich elementarnych neuronów. W zależności od budowy sieci oraz od wykorzystywanej
-przez neurony funkcji aktywacji, wyróżniamy różne rodzaje sieci.\\
-Tutaj można jeszcze skorzystać z książki Tadeusiewicza~\cite{tadeusiewicz}, strona 12.
+przez neurony funkcji aktywacji, wyróżniamy różne rodzaje sieci.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
 \subsection{Rodzaje sieci}
-Skorzystać z książki Tadeusiewicza~\cite{tadeusiewicz} - główne rodzaje sieci to rozdziały książki - napisać
+Skorzystać z książki Tadeusiewicza~\cite{tad:sieci} - główne rodzaje sieci to rozdziały książki - napisać
 zdanie-dwa o każdym z nich
 
 
@@ -85,7 +84,12 @@ czy występują znaki specjalne danego języka :P)
 \subsection{Określenie języka przy pomocy sieci neuronowej}
 Czyli wprowadzenie teoretyczne do naszego projektu. Uznaliśmy, że ten problem można rozwiązać przy pomocy sieci
 neuronowej. Uznaliśmy, że fajnie będzie to zrobić przy pomocy prostej sieci, złożonej z trzech wartstw,
-z neuronami z aktywacją sigmoidalną (i dlaczego akurat taką :P)
+z neuronami z aktywacją sigmoidalną (i dlaczego akurat taką :P)\\
+Do środkowej warstwy wzięliśmy 10 neuronów - tak z dupy trochę - może to potestować? (i wtedy w testach
+informcję o tym, że zweryfikowaliśmy wstępne założenia i okazały się dobre / złe - musieliśmy zmienić
+drastycznie liczbę neuronów, etc.)\\
+W książce~\cite{tad:elem_wpr} są informacje o tym jak wybierać sieć (na tej podstawie ustalić np wstępną liczbę
+neuronów)
 
 
 % An example of a floating figure using the graphicx package.
@@ -172,9 +176,7 @@ z neuronami z aktywacją sigmoidalną (i dlaczego akurat taką :P)
 
 
 \section{Implementacja}
-Tutaj idzie sekcja o tym jak podzieliliśmy na moduły, jaką sieć wybraliśmy, jaką bibliotekę (i dlaczego) \\
-Do środkowej warstwy wzięliśmy 10 neuronów - tak z dupy trochę - może to potestować? (to może być też w testach
-w sumie)
+Tutaj idzie sekcja o tym jak podzieliliśmy na moduły, jaką sieć wybraliśmy, jaką bibliotekę (i dlaczego)
 
 
 
@@ -237,13 +239,14 @@ Projekt jest fajny, bądź nie i jak go można dalej rozwijać, albo gdzie go mo
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
-\bibitem{tadeusiewicz}
+\bibitem{tad:sieci}
 R.~Tadeusiewicz, \emph{Sieci neuronowe}, wyd.~2, Warszawa, Polska: Akademicka
 Oficyna Wydawnicza RM, 1993.
 
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+\bibitem{tad:elem_wpr}
+R.~Tadeusiewicz, \emph{Elementarne wprowadzenie do techniki sieci neuronowych
+z przykładowymi programami}, Warszawa, Polska: Akademicka Oficyna Wydawnicza PLJ, 1998.
+
 
 \end{thebibliography}
 

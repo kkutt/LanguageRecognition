@@ -1,6 +1,7 @@
 package ssn.network;
 
 import com.sun.org.apache.bcel.internal.generic.GETFIELD;
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.HashSet;
 import org.encog.engine.network.activation.ActivationSigmoid;
@@ -102,20 +103,25 @@ public class NetworkUtils {
      * Test sieci
      */
     public static void testNetwork(BasicNetwork network, MLDataSet testSet, String[] langs) {
-        System.out.println("Test Results:\n");
+        //System.out.println("Test Results:\n");
         testInfo = "<h2>Test Results:</h2><ol>";
         int test = 0;
         int succ = 0;
         int outputSize = network.getOutputCount();
         
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        nf.setMinimumFractionDigits(2);
+        
         for(MLDataPair pair : testSet ) {
             test++;
-            System.out.println("=== Test #" + test + " ===");
+            //System.out.println("=== Test #" + test + " ===");
             testInfo += "<li>Test " + test + " : <ul>"; 
             
             final MLData output = network.compute(pair.getInput());
             int idealRes = 0;
             int networkRes = 0;
+            int secondNetworkRes = 0;
             
             double[] idealResponse = pair.getIdeal().getData();
             for(int i = 0; i < outputSize; i++) {
@@ -123,7 +129,7 @@ public class NetworkUtils {
                     idealRes = i;				     //wyjsciowy ma wartosc 1.0; pozostale maja wartosc 0.0
                 }
             }
-            System.out.println("Ideal response:   " + langs[idealRes]);
+            //System.out.println("Ideal response:   " + langs[idealRes]);
             testInfo += "<li>Ideal response: " + langs[idealRes] + "</li>";
             double[] networkResponse = output.getData();
             for(int i = 0; i < outputSize; i++) {
@@ -131,16 +137,33 @@ public class NetworkUtils {
                     networkRes = i;					   //osiagnieta zostala najwieksza wartosc
                 }
             }
-            System.out.println("Network response: " + langs[networkRes] + " [ prob: " + networkResponse[networkRes] + "]");
-            testInfo += "<li>Network response: " + langs[networkRes] + "</li><li>Probability: " + networkResponse[networkRes] + "</li></ul></li>";
-            if( networkRes == idealRes )
-                succ++;
+            if( networkRes == 0 )
+                secondNetworkRes = 1;
+            for(int i = 0; i < outputSize; i++) {
+                if( networkRes == i )
+                    continue;       //brzydkie, ale nie mam pomyslu na lepszy algorytm
+                if( networkResponse[i] > networkResponse[secondNetworkRes] )
+                    secondNetworkRes = i;
+            }
             
-            System.out.println();
+            
+            //System.out.println("Network response: " + langs[networkRes] + " [ prob: " + nf.format(networkResponse[networkRes]) + "]");
+            //System.out.println("Second response:  " + langs[secondNetworkRes] + " [ prob: " + nf.format(networkResponse[secondNetworkRes]) + " ]");
+            testInfo += "<li>Network response: " + langs[networkRes] + " (<i>Probability: " + nf.format(networkResponse[networkRes]) + "</i>)</li>";
+            testInfo += "<li>Second response: " + langs[secondNetworkRes] + " (<i>Probability: " + nf.format(networkResponse[secondNetworkRes]) + "</i>)</li>";
+            if( networkRes == idealRes ){
+                succ++;
+                testInfo += "<li>Result: <font color=\"green\"><b>GOOD!</b></font></li></ul></li>";
+            } else {
+                testInfo += "<li>Result: <font color=\"red\"><b>BAD...</b></font></li></ul></li>";
+            }
+                
+            
+            //System.out.println();
             
         }
-        testInfo += "</ol><p>Effectiveness: " + (double)succ/(double)test + "</p>";
-        System.out.println("Effectiveness: " + (double)succ/(double)test);
+        testInfo += "</ol><h3>Effectiveness: " + nf.format((double)succ/(double)test) + "</h3>";
+        //System.out.println("Effectiveness: " + nf.format((double)succ/(double)test));
         
     }
 }

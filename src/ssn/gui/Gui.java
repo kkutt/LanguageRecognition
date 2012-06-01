@@ -1,7 +1,6 @@
 package ssn.gui;
 
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +17,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.encog.neural.networks.BasicNetwork;
@@ -411,7 +411,8 @@ public class Gui extends javax.swing.JFrame {
             else
                 title = "Tests results";
             final JDialog resultsDialog = new JDialog(this, title, true);
-            resultsDialog.add(new JLabel(info));
+            JScrollPane infoPane = new JScrollPane(new JLabel(info));
+            resultsDialog.add(infoPane);
             JButton ok = new JButton("Ok");
             ok.addActionListener(new ActionListener() {
 
@@ -450,9 +451,9 @@ public class Gui extends javax.swing.JFrame {
             resultsPanel.add(save);
             resultsDialog.add(resultsPanel, BorderLayout.SOUTH);
             if(mode == Mode.LEARN)
-                resultsDialog.setSize(150,180);
+                resultsDialog.setSize(180,180);
             else
-                resultsDialog.setSize(300,800);
+                resultsDialog.setSize(500,800);
         
             resultsDialog.setResizable(false);
             resultsDialog.setVisible(true);
@@ -476,7 +477,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser netChooser = new JFileChooser();
         FileNameExtensionFilter netFilter = new FileNameExtensionFilter("Pliki sieci (.net)", "net");
         netChooser.setFileFilter(netFilter);
-        netChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        netChooser.setCurrentDirectory(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"data"));
         int netResult = netChooser.showDialog(this, "Wybierz sieć");
         if(netResult == 0){
             networkFileName = netChooser.getSelectedFile().getPath();
@@ -489,7 +490,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser addFileChooser = new JFileChooser();
         FileNameExtensionFilter addFileFilter = new FileNameExtensionFilter("Plik txt", "txt");
         addFileChooser.setFileFilter(addFileFilter);
-        addFileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        addFileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"data"));
         int addFileResult = addFileChooser.showDialog(this, "Wybierz plik");
         int selectedLanguage = languageList.getSelectedIndex();
         String addFileLanguage;
@@ -509,7 +510,7 @@ public class Gui extends javax.swing.JFrame {
         JFileChooser dataChooser = new JFileChooser();
         FileNameExtensionFilter dataFilter = new FileNameExtensionFilter("Pliki danych (.txt)", "txt");
         dataChooser.setFileFilter(dataFilter);
-        dataChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+        dataChooser.setCurrentDirectory(new File(System.getProperty("user.dir")+System.getProperty("file.separator")+"data"));
         int dataResult = dataChooser.showDialog(this, "Wybierz dane");
         if(dataResult == 0){
             dataFileName = dataChooser.getSelectedFile().getPath();
@@ -589,7 +590,7 @@ public class Gui extends javax.swing.JFrame {
             dataFileName = LanguageRecognition.DEFAULT_DATA_FILENAME;
         else
             dataFileName = dataNameTextField.getText();
-        dataFileName += ".txt";
+        dataFileName = "data" + System.getProperty("file.separator") + dataFileName + ".txt";
         DataFile.saveData(dataFileName, textFiles);
     }//GEN-LAST:event_dataSaveButtonActionPerformed
 
@@ -598,7 +599,7 @@ public class Gui extends javax.swing.JFrame {
             networkFileName = LanguageRecognition.DEFAULT_NETWORK_FILENAME;
         else
             networkFileName = netNameTextField.getText();
-        networkFileName += ".net";
+        networkFileName = "data" + System.getProperty("file.separator") + networkFileName + ".net";
         NetworkFile.saveNetworkToFile(network, networkFileName);
     }//GEN-LAST:event_netSaveButtonActionPerformed
 

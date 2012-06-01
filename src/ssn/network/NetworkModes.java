@@ -1,5 +1,6 @@
 package ssn.network;
 
+import java.text.NumberFormat;
 import java.util.HashSet;
 import org.encog.ml.data.MLDataSet;
 import org.encog.neural.networks.BasicNetwork;
@@ -26,7 +27,7 @@ public class NetworkModes {
      */
     public static BasicNetwork learn(HashSet<TextFile> textFiles, String[] langs) {
         
-        System.out.println("Wybrany tryb: Nauka");
+        //System.out.println("Wybrany tryb: Nauka");
         learnInfo = "<h2>Learning</h2>";
         MLDataSet learnSet = NetworkUtils.prepareDataSet(textFiles, langs);
         BasicNetwork network = NetworkUtils.prepareNetwork(LanguageRecognition.LETTERS_COUNT,
@@ -40,8 +41,43 @@ public class NetworkModes {
             //System.out.println("Epoch #" + epoch + " Error:" + learn.getError());
             epoch++;
         } while(learn.getError() > 0.01);
-        System.out.println("Learning iterations: " + epoch + '\n');
+        //System.out.println("Learning iterations: " + epoch + '\n');
         learnInfo += "<p>Iterations number: " + epoch;
+        
+        
+        /* tylko na potrzeby artykulu: obliczenie czestosci wystepowania liter */
+        double[][] languagesAndLettersQuantity = new double[langs.length][LanguageRecognition.LETTERS_COUNT];
+        for(int i = 0; i < langs.length; i++) {
+            double countFilesInThisLanguage = 0.0;
+            for(TextFile text : textFiles) {
+                if( langs[i].equalsIgnoreCase(text.getLanguage()) ) {
+                    countFilesInThisLanguage++;
+                    double[] quantity = text.getLettersQuantity();
+                    for( int j = 0; j < LanguageRecognition.LETTERS_COUNT; j++)
+                        languagesAndLettersQuantity[i][j] += quantity[j];
+                }
+            }
+            if(countFilesInThisLanguage > 1) {
+                for( int j = 0; j < LanguageRecognition.LETTERS_COUNT; j++){
+                    languagesAndLettersQuantity[i][j] /= (double)countFilesInThisLanguage;
+                    languagesAndLettersQuantity[i][j] *= 100.0;
+                }
+            }
+        }
+        /* wyswietlenie czestosci */
+        String quantityInfo = "";
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
+        nf.setMinimumFractionDigits(2);
+        for(int i = 0; i < langs.length; i++) {
+            quantityInfo += ( "=== Language: " + langs[i] + " ===\n");
+            for( int j = 0; j < LanguageRecognition.LETTERS_COUNT; j++)
+                quantityInfo += (char)(j + 'A') + ": " + nf.format(languagesAndLettersQuantity[i][j]) + "%, ";
+            quantityInfo += "\n\n";
+        }
+        System.out.println(quantityInfo);
+        
+        
         return network;
         
     }
