@@ -7,5 +7,6 @@
 
 # Others #
 *~
+*.backup
 /build/
 /nbproject/private/
