@@ -429,11 +429,13 @@ public class Gui extends javax.swing.JFrame {
                 public void actionPerformed(ActionEvent e) {
                     FileWriter fw = null;
                     try {
-                        fw = new FileWriter("TestResults.html");
-                        if(mode == Mode.LEARN)
+                        if(mode == Mode.LEARN){
+                            fw = new FileWriter("LearnInfo.html");
                             fw.write(NetworkModes.getLearnInfo());
-                        else
+                        } else {
+                            fw = new FileWriter("TestResults.html");
                             fw.write(NetworkUtils.getTestInfo());
+                        }
                         fw.close();
                     } catch (IOException ex) {
                         System.out.println("WARN: Blad zapisu do pliku TestResults.html");
