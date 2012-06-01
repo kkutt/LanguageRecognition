@@ -451,7 +451,7 @@ public class Gui extends javax.swing.JFrame {
             resultsPanel.add(save);
             resultsDialog.add(resultsPanel, BorderLayout.SOUTH);
             if(mode == Mode.LEARN)
-                resultsDialog.setSize(180,180);
+                resultsDialog.setSize(950,400);
             else
                 resultsDialog.setSize(500,800);
         

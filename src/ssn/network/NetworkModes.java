@@ -45,7 +45,7 @@ public class NetworkModes {
         learnInfo += "<p>Iterations number: " + epoch;
         
         
-        /* tylko na potrzeby artykulu: obliczenie czestosci wystepowania liter */
+        /*************** obliczenie czestosci wystepowania liter ***************/
         double[][] languagesAndLettersQuantity = new double[langs.length][LanguageRecognition.LETTERS_COUNT];
         for(int i = 0; i < langs.length; i++) {
             double countFilesInThisLanguage = 0.0;
@@ -65,17 +65,24 @@ public class NetworkModes {
             }
         }
         /* wyswietlenie czestosci */
-        String quantityInfo = "";
         NumberFormat nf = NumberFormat.getInstance();
         nf.setMaximumFractionDigits(2);
         nf.setMinimumFractionDigits(2);
+        
+        learnInfo += "<p><br /><br /><br /></p><h4>Average letters quantity:</h4>";
+        learnInfo += "<table border=\"0\" cellspacing=\"0\" cellpadding=\"5\"><tr><th></th>";
+        for(int i = 0; i < LanguageRecognition.LETTERS_COUNT; i++)
+            learnInfo += "<th>" + (char)(i + 'A') + "</th>";
+        learnInfo += "</tr>";
+        
         for(int i = 0; i < langs.length; i++) {
-            quantityInfo += ( "=== Language: " + langs[i] + " ===\n");
-            for( int j = 0; j < LanguageRecognition.LETTERS_COUNT; j++)
-                quantityInfo += (char)(j + 'A') + ": " + nf.format(languagesAndLettersQuantity[i][j]) + "%, ";
-            quantityInfo += "\n\n";
+            learnInfo += "<tr><th>" + langs[i] + "</th>";
+            for( int j = 0; j < LanguageRecognition.LETTERS_COUNT; j++) {
+                learnInfo += "<td>" + nf.format(languagesAndLettersQuantity[i][j]) + "%</td>";
+            }
+            learnInfo += "</tr>";
         }
-        System.out.println(quantityInfo);
+        learnInfo += "</table>";
         
         
         return network;
@@ -87,7 +94,7 @@ public class NetworkModes {
      */
     public static void test(HashSet<TextFile> textFiles, String[] langs, BasicNetwork network) {
         
-        System.out.println("Wybrany tryb: Test");
+        //System.out.println("Wybrany tryb: Test");
         
         MLDataSet testSet = NetworkUtils.prepareDataSet(textFiles, langs);
         
