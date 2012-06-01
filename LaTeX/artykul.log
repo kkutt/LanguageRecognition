@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  1 JUN 2012 15:38
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  1 JUN 2012 20:00
 entering extended mode
  %&-line parsing enabled.
 **artykul.tex
@@ -411,25 +411,78 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
 \MPscratchDim=\dimen120
 \MPnumerator=\count96
 \everyMPtoPDFconversion=\toks19
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+)
+Underfull \hbox (badness 2158) in paragraph at lines 74--76
+\T1/ptm/m/n/10 Poª¡czenia mi¦dzy neu-ron-ami stanowi¡ graf z cyk-lami.
+ []
 
+
+Underfull \hbox (badness 1748) in paragraph at lines 87--90
+\T1/ptm/m/n/10 s¡ odpowied-nimi narz¦dzi-ami, s¡: rozpoz-nawanie pisma,
+ []
+
+
+Underfull \hbox (badness 2837) in paragraph at lines 130--136
+ \T1/ptm/m/it/10 2) Bu-dowa sieci: [][] \T1/ptm/m/n/10 Ze wzgl¦du na charak-ter
+ zada-nia,
+ []
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+
+]
+Underfull \hbox (badness 3803) in paragraph at lines 142--145
+\T1/ptm/m/n/10 wowych jed-nok-ierunk-owych, czyli al-go-rytmu propa-gacji
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--299
+[]\T1/ptm/m/n/8 T. Smykowski, \T1/ptm/m/it/8 Jak Google rozpoz-naje j¦zyk tek-s
+tu?\T1/ptm/m/n/8 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 296--299
+\T1/ptm/m/n/8 http://polishwords.com.pl/blog/2009/rozpoznawanie-jezyka-tekstu/,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--311
+[]\T1/ptm/m/it/8 Ethnologue\T1/ptm/m/n/8 , http://www.ethnologue.com/language_i
+ndex.asp, (dost¦p:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--315
+\T1/ptm/m/n/8 http://en.wikipedia.org/wiki/Wikipedia:Language_recognition_chart
+,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 317--319
+\T1/ptm/m/n/8 http://www.heatonresearch.com/wiki/Resilient_Propagation, (dost¦p
+:
+ []
+
+[2
 
 ] (./artykul.aux) ) 
 Here is how much of TeX's memory you used:
- 2075 strings out of 495026
- 28899 string characters out of 1181802
- 79681 words of memory out of 3000000
- 5270 multiletter control sequences out of 15000+50000
+ 2081 strings out of 495026
+ 28996 string characters out of 1181802
+ 82699 words of memory out of 3000000
+ 5276 multiletter control sequences out of 15000+50000
  110452 words of font info for 107 fonts, out of 3000000 for 9000
  51 hyphenation exceptions out of 8191
- 26i,5n,21p,204b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 26i,5n,21p,210b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/
 share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
 fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/tim
 es/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artykul.pdf (1 page, 56233 bytes).
+Output written on artykul.pdf (2 pages, 65475 bytes).
 PDF statistics:
- 23 PDF objects out of 1000 (max. 8388607)
+ 26 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

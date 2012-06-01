@@ -18,7 +18,10 @@
 
 \author{Krzysztof~Kutt, Michał~Nowak
 \thanks{K. Kutt i M. Nowak, Katedra Automatyki, Wydział Elektrotechniki, Automatyki, Informatyki i Elektroniki,
-Akademia Górniczo-Hutnicza, Kraków, Polska, e-mail: kkutt@student.agh.edu.pl, mnowak@student.agh.edu.pl}}
+Akademia Górniczo-Hutnicza, Kraków, Polska, e-mail: kkutt@student.agh.edu.pl, rial@student.agh.edu.pl}}
+
+\markboth{Sztuczne Sieci Neuronowe, semestr letni 2011/2012, prowadzący: mgr inż. Tomasz Orzechowski}%
+{}
 
 % make the title area
 \maketitle
@@ -50,46 +53,96 @@ sieć neuronowa, język, rozpoznawanie.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{P}{rzedstawiona} w tym artykule aplikacja powstała w~ramach przedmiotu
-Sztuczne Sieci Neuronowe, semestr letni 2011/2012, prowadzący: mgr inż. Tomasz Orzechowski.
+%
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
 
-\subsection{Sieci neuronowe}
-Sztuczne Sieci Neuronowe to modele matematyczne, stworzone na wzór naturalnych połączeń neuronów
-znajdujących się w ludzkim mózgu. Każdy sztuczny neuron zbiera sygnały wejścia, dokonuje na nich
-odpowiedniej transformacji i zwraca odpowiednią wartość na wyjściu. Sztuczna sieć neuronowa może
-składać się z tysięcy takich elementarnych neuronów. W zależności od budowy sieci oraz od wykorzystywanej
-przez neurony funkcji aktywacji, wyróżniamy różne rodzaje sieci.
-
-% needed in second column of first page if using \IEEEpubid
-%\IEEEpubidadjcol
+\IEEEPARstart{S}{ztuczne} sieci neuronowe to bardzo uproszczone modele ludzkiego mózgu.
+Każda z sieci składa się z setek, albo tysięcy sztucznych neuronów, stworzonych na wzór naturalnego
+neuronu. Sztuczny neuron zbiera sygnały wejścia (poprzez 'dendryty'), dokonuje na nich odpowiedniej
+transformacji i zwraca odpowiednią wartość na wyjściu ('akson'). W zależności od budowy sieci (układu
+neuronów) oraz od wykorzystywanej przez neurony funkcji aktywacji, wyróżniane są różne rodzaje sieci~\cite{tad:sieci}.
 
 \subsection{Rodzaje sieci}
-Skorzystać z książki Tadeusiewicza~\cite{tad:sieci} - główne rodzaje sieci to rozdziały książki - napisać
-zdanie-dwa o każdym z nich
+Najważniejsze typy sieci neuronowych to sieci jednokierunkowe, sieci rekurencyjne i~sieci Kohonena~\cite{wiki:sieci}.
+
+\subsubsection{Sieci jednokierunkowe}
+W tych sieciach neurony są ułożone warstwowo. Sygnały przechodzą od wejścia do wyjścia sieci, przez wszystkie jej
+warstwy, bez nawrotów (bez sprzężenia zwrotnego). Rozwiązują dosyć szeroką klasę problemów.
+
+\subsubsection{Sieci rekurencyjne}
+Sieci ze sprzężeniem zwrotnym. Połączenia między neuronami stanowią graf z cyklami. Stosowane są np do rozwiązywania
+problemów minimalizacji, przykładowo: problemu komiwojażera.
+
+\subsubsection{Sieci Kohonena}
+Sieć, która dopasowuje swoją strukturę przestrzenną do zbioru danych (mapa). Uczona bez nauczyciela.
 
 
 \subsection{Zastosowania sieci}
-Wiki i książka tadeusiewicza.
+Sztuczne sieci neuronowe, ze względu na fakt podawania jedynie przybliżonych wyników, nie nadają się do obliczania
+dokładnych wartości. Za to, dzięki 'umiejętności' uczenia się, nadają się do rozwiązywania problemów słabo określonych,
+do których nie jesteśmy w stanie stworzyć algorytmów. Sieć w trakcie procesu uczenia się może wykryć zależności,
+których nie jesteśmy w stanie dostrzec.
+
+Przykładowymi problemami, do których sieci neuronowe są odpowiednimi
+narzędziami, są: rozpoznawanie pisma, przetwarzanie obrazu (np w poszukiwaniu ukrtych jednostek wojskowych, czy
+podejrzanych pakunków na lotniskach), prognozowanie cen.
 
 
-\subsection{Rozpoznawanie języka}
-Coś ogólnie o naszym problemie. Do czego to może być potrzebne, kto już walczył z tym problemem i jak
-(np google translator ma opcję rozpoznawania języka. \\
-Przedstawione opcje to nie musi być tylko częstotliwość liter - pewnie są jakieś inne (choćby sprawdzanie,
-czy występują znaki specjalne danego języka :P)
+\subsection{Rozpoznawanie języka zadanego tekstu}
+W niniejszym artykule przedstawiony zostaje inny, ciekawy problem: rozpoznawanie języka zadanego tekstu.
+
+Wg projektu ``Ethnologue'', na świecie istnieje prawie 7.5 tysiąca języków~\cite{ethnologue}. Narzędzie,
+które byłoby w stanie rozpoznać z jakim językiem mamy doczynienia, byłoby bardzo użyteczne - dzięki niemu,
+można np ustalić jakiego tłumacza potrzebujemy. Wizją przyszłości jest stworzenie automatycznego tłumacza,
+który najpierw rozpoznaje mowę naszego rozmówcy, następnie rozpoznaje język, tłumaczy go, a na samym końcu
+syntezuje mowę, byśmy mogli w naszym ojczystym języku usłyszeć słowa rozmówcy.
+
+Do zadania tego można podejść na wiele sposobów~\cite{smykowski:jak_google_rozpoznaje}.
+
+\subsubsection{Alfabet}
+Pierwszą przesłanką może być wykorzystywany alfabet. Wiele języków posiada charakterystyczne dla siebie znaki
+diakrytyczne, jak np język polski i 'ogonki'.
+
+\subsubsection{Charakterystyczne wyrazy}
+W przypadku takich samych alfabetów, decyzję o języku można podjąć, zwracając uwagę na charakterystyczne dla
+danego języka wyrazy, czy końcówki. Duże zestawienie takich prostych reguł znajduje się w serwisie Wikipedia~\cite{wiki:langs}.
+
+\subsubsection{Częstotliwość liter}
+Można również ustalić częstotliwość występowania poszczególnych liter. Już krótkie spojrzenie na listę zestawów do gry
+w Scrabble w różnych językach~\cite{wiki:scrabble} (ilość i wartość danej litery zależy od częstotliwości jej występowania
+w danym języku), pozwala na stwierdzenie, że częstotliwości te są różne w różnych językach. Nie jest jednak możliwe proste
+określenie reguł rozpoznawania języka na tej podstawie. Dlatego idealnym narzędziem do operowania na takich danych jest
+sieć neuronowa.
 
 
-\subsection{Określenie języka przy pomocy sieci neuronowej}
-Czyli wprowadzenie teoretyczne do naszego projektu. Uznaliśmy, że ten problem można rozwiązać przy pomocy sieci
-neuronowej. Uznaliśmy, że fajnie będzie to zrobić przy pomocy prostej sieci, złożonej z trzech wartstw,
-z neuronami z aktywacją sigmoidalną (i dlaczego akurat taką :P)\\
-Do środkowej warstwy wzięliśmy 10 neuronów - tak z dupy trochę - może to potestować? (i wtedy w testach
-informcję o tym, że zweryfikowaliśmy wstępne założenia i okazały się dobre / złe - musieliśmy zmienić
-drastycznie liczbę neuronów, etc.)\\
-W książce~\cite{tad:elem_wpr} są informacje o tym jak wybierać sieć (na tej podstawie ustalić np wstępną liczbę
-neuronów)
+\subsection{Rozpoznawanie języka na podstawie częstotliwości liter}
+Niniejszy artykuł przedstawia próbę rozpoznawania języka na podstawie częstotliwości liter. Celem uproszczenia budowy
+programu, zrezygnowano z analizy alfabetu i zdecydowano się na analizowanie tylko i wyłącznie częstotliwości 26~liter
+alfabetu łacińskiego.
+
+\subsubsection{Liczba wejść i wyjść}
+Sieć składa się z 26 wejść: na każdym podawana jest częstotliwość występowania odpowiedniej litery alfabetu łacińskiego
+w danym tekście. Liczba wyjść zależna jest od założonej ilości rozpoznawanych języków. W~przygotowanej aplikacji założono
+obsługę 11 języków.
+
+\subsubsection{Budowa sieci}
+Ze względu na charakter zadania, czyli potrzebę wykrycia odpowiednich zależności w zestawie 26~sygnałów wejściowych,
+zdecydowano się na wykorzystanie sieci jednokierunkowej, złożonej z trzech warstw (dodatkowa warstwa celem usprawnienia
+procesu uczenia sieci). Nie istnieje żaden algorytm wspomagający podejmowanie decyzji o ilości neuronów w warstwie
+ukrytej~\cite{tad:elem_wpr}. Decyzja ta jest zawsze podejmowana arbitralnie i następnie weryfikowana w czasie testów.
+Należy tylko pamiętać, aby nie była ani zbyt duża, ani zbyt mała. Zdecydowano się przyjąć, że będzie się ona składała
+z 10 neuronów.
+
+\subsubsection{Funkcja aktywacji}
+Każdy neuron wykorzystuje sigmoidalną funkcję aktywacji. Pozwala ona na lepsze różnicowanie zbliżonych sygnałów niż funkcja
+liniowa. W rozważanym problemie, pozwala na lepsze różnicowanie zbliżonych częstotliwości występowania liter.
+
+\subsubsection{Uczenie sieci}
+Do uczenia sieci wykorzystano algorytm Resilient Propagation. Jest to zmodyfikowana wersja podstawowego algorytmu uczenia
+z nauczycielem sieci wielowarstwowych jednokierunkowych, czyli algorytmu propagacji wstecznej. Zdecydowano się na ten
+algorytm, ponieważ jest on najbardziej efektywnym algorytmem uczenia dla prostych sieci neuronowych, takich jak nasza~\cite{encog:rprop}.
+
 
 
 % An example of a floating figure using the graphicx package.
@@ -176,18 +229,18 @@ neuronów)
 
 
 \section{Implementacja}
-Tutaj idzie sekcja o tym jak podzieliliśmy na moduły, jaką sieć wybraliśmy, jaką bibliotekę (i dlaczego)
+\IEEEPARstart{S}{tworzona} aplikacja składa się z trzech głównych części: obsługi plików, obsługi sieci neuronowej i GUI.
 
 
 
 \section{Testy}
-Przeprowadzone testy. Wyniki. Informacje o częstotliwości liter, ale też o skuteczności sieci. Wykresy? \\
+\IEEEPARstart{P}{rzeprowadzone} testy. Wyniki. Informacje o częstotliwości liter, ale też o skuteczności sieci. Wykresy? \\
 Co nam wyszło, dla których języków działa, które okazały się podobne, etc
 
-
+co nie wyszlo w pracy (ma byc krytyczne) problemy z implementacja, z siecia, z dokumentacja itd itp
 
 \section{Wnioski}
-Projekt jest fajny, bądź nie i jak go można dalej rozwijać, albo gdzie go można zastosować
+\IEEEPARstart{P}{rojekt} jest fajny, bądź nie i jak go można dalej rozwijać, albo gdzie go można zastosować
 
 
 
@@ -239,13 +292,38 @@ Projekt jest fajny, bądź nie i jak go można dalej rozwijać, albo gdzie go mo
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{1}
 
-\bibitem{tad:sieci}
-R.~Tadeusiewicz, \emph{Sieci neuronowe}, wyd.~2, Warszawa, Polska: Akademicka
-Oficyna Wydawnicza RM, 1993.
+\bibitem{smykowski:jak_google_rozpoznaje}
+T.~Smykowski, \emph{Jak Google rozpoznaje język tekstu?},
+http://polishwords.com.pl/blog/2009/rozpoznawanie-jezyka-tekstu/,
+(dostęp: 2012-05-31)
 
 \bibitem{tad:elem_wpr}
 R.~Tadeusiewicz, \emph{Elementarne wprowadzenie do techniki sieci neuronowych
 z przykładowymi programami}, Warszawa, Polska: Akademicka Oficyna Wydawnicza PLJ, 1998.
+
+\bibitem{tad:sieci}
+R.~Tadeusiewicz, \emph{Sieci neuronowe}, wyd.~2, Warszawa, Polska: Akademicka
+Oficyna Wydawnicza RM, 1993.
+
+\bibitem{ethnologue}
+\emph{Ethnologue}, http://www.ethnologue.com/language\_index.asp,
+(dostęp: 2012-05-31)
+
+\bibitem{wiki:langs}
+\emph{Language recognition chart}, \\ http://en.wikipedia.org/wiki/Wikipedia:Language\_recognition\_chart,
+(dostęp: 2012-05-31)
+
+\bibitem{encog:rprop}
+\emph{Resilient Propagation}, \\ http://www.heatonresearch.com/wiki/Resilient\_Propagation,
+(dostęp: 2012-05-31)
+
+\bibitem{wiki:scrabble}
+\emph{Scrabble letter distributions}, \\ http://en.wikipedia.org/wiki/Scrabble\_letter\_distributions,
+(dostęp: 2012-05-31)
+
+\bibitem{wiki:sieci}
+\emph{Sieć neuronowa}, http://pl.wikipedia.org/wiki/Sieć\_neuronowa,
+(dostęp: 2012-05-31)
 
 
 \end{thebibliography}
