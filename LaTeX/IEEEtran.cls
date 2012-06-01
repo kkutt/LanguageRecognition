@@ -1632,7 +1632,7 @@
 \def\listtablename{List of Tables}
 \def\refname{Literatura cytowana}
 \def\indexname{Index}
-\def\figurename{Fig.}
+\def\figurename{Rys.}
 \def\tablename{TABLE}
 \@IEEEcompsocconfonly{\def\figurename{Figure}\def\tablename{Table}}
 \def\partname{Part}

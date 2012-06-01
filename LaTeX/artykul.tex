@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[pdftex]{graphicx}
-\graphicspath{/img/}
+\graphicspath{{img/}}
 
 % correct bad hyphenation here
 \hyphenation{naj-waż-niej-sze neu-ro-no-we}
@@ -28,12 +28,15 @@ Akademia Górniczo-Hutnicza, Kraków, Polska, e-mail: kkutt@student.agh.edu.pl, 
 
 
 \begin{abstract}
-TODO: Tutaj leci abstrakt
+W artykule przedstawiono problem rozpoznawania języka zadanego tekstu i propozycje jego rozwiązania.
+Autorzy zdecydowali się na wykorzystanie informacji o częstotliwości występowania liter. Przygotowano
+program wykorzystujący sieć neuronową i zestaw danych uczących. W trakcie testów osiągnięto dobrą skuteczność.
+Zaproponowano możliwości dalszego rozwoju projektu.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-sieć neuronowa, język, rozpoznawanie.
+sieć neuronowa, język naturalny, częstotliwość liter.
 \end{IEEEkeywords}
 
 
@@ -259,27 +262,131 @@ w postaci par: JĘZYK ŚCIEŻKA, gdzie JĘZYK to oznaczenie literowe języka, w 
 \subsubsection{Pliki sieci neuronowych}
 Pliki binarne o rozszerzeniu *.net, zawierające zserializowany obiekt sieci neuronowej.
 
-
 \subsection{Obsługa sieci neuronowej}
-
-
+W aplikacji wykorzystywana jest biblioteka Encog Machine Learning Framework. Udostępnia ona własne typy danych, różne
+rodzaje sieci, funkcji aktywacji i metod uczenia. W stworzonej aplikacji została zaimplementowana obsługa udostępnianych
+przez bibliotekę narzędzi:
+\begin{itemize}
+ \item transformacja informacji o częstotliwościach na typ \mbox{MLDataSet},
+ \item przygotowanie odpowiedniej sieci,
+ \item uruchomienie procesu uczenia / testowania,
+ \item zebranie informacji zwrotnych.
+\end{itemize}
 
 \subsection{GUI}
-Graficzny interfejs użytkownika umożliwia dostęp do wszystkich funkcjonalności aplikacji.
+Graficzny interfejs użytkownika, stworzony przy użyciu biblioteki Swing, umożliwia dostęp do wszystkich
+funkcjonalności aplikacji~(rys.~\ref{fig:gui}).
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3in]{GUI}
+\caption{GUI. Widok ogólny}
+\label{fig:gui}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3in]{Learning_ON}
+\caption{GUI. Widok po załadowaniu zestawu danych}
+\label{fig:gui_zestaw}
+\end{figure}
+
+Składa się z 5 głównych obszarów:
+\begin{itemize}
+ \item rozwijane menu wyboru trybu (Nauka/Testy),
+ \item wczytywanie / zapisywanie pliku sieci neuronowej; podczas zapisu nie jest zapamiętywana lista obsługiwanych języków
+- podczas wczytywania sieci należy zadbać o to, aby lista języków była taka sama jak podczas uczenia - w przeciwnym wypadku
+test sieci może zwracać błędne wyniki,
+ \item wczytywanie / zapisywanie pliku zestawu danych; po załadowaniu lista plików i ich języków pojawia się w polu
+poniżej~(rys.~\ref{fig:gui_zestaw}),
+ \item lista języków (możliwość dodania kolejnego / wyczyszczenia listy),
+ \item lista aktualnie załadowanych plików i ich języków (możliwość dodania kolejnego / wyczyszczenia listy); aby dodać
+kolejny plik należy wpierw zaznaczyć odpowiedni język na liście, a następnie wybrać opcję Dodaj plik.
+\end{itemize}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3in]{Learning}
+\caption{Okienko z wynikami. Uczenie}
+\label{fig:learning}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=3in]{Testing}
+\caption{Okienko z wynikami. Testowanie}
+\label{fig:testing}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=2.7in]{TestResults}
+\caption{Plik TestResult.html}
+\label{fig:testing_file}
+\end{figure}
+
+Po zakończeniu procesu uczenia / testowania sieci, pojawia się okienko z wynikami:
+\begin{itemize}
+ \item uczenie: informacja o ilości iteracji oraz tabela ze średnimi częstotliwościami liter dla każdego języka
+w zadanym zestawie uczącym~(rys.~\ref{fig:learning}),
+ \item testowanie: informacja o każdym przeprowadzonym teście: prawidłowa odpowiedź, dwie najbardziej prawdopodobne odpowiedzi
+udzielone przez sieć oraz ich prawdopodobieństwo, informacja o wyniku testu (GOOD / BAD); na końcu wyświetlana jest informacja
+o obliczonej skuteczności sieci~(rys.~\ref{fig:testing}).
+\end{itemize}
+Istnieje możliwość zapisania raportu z wynikami do pliku html, odpowiednio LearnInfo.html
+i~TestResult.html~(rys.~\ref{fig:testing_file}).
 
 
 \section{Testy}
-\IEEEPARstart{P}{rzeprowadzone} testy. Wyniki. Informacje o częstotliwości liter, ale też o skuteczności sieci. Wykresy? \\
-Co nam wyszło, dla których języków działa, które okazały się podobne, etc
+\IEEEPARstart{C}{elem} przetestowania aplikacji, przygotowano zestaw 5 tekstów w 11 językach: 
+czeskim (CZ), niemieckim (DE), angielskim (EN), hiszpańskim (ES), esperanto (EZ), francuskim (FR),
+węgierskim (HU), włoskim (IT), łacinie (LA), polskim (PL) i słowackim (SK). Dla każdego z języków 4 teksty posłużyły
+do nauki, a piąty do testowania (nieobecny w zbiorze uczącym).
 
-co nie wyszlo w pracy (ma byc krytyczne) problemy z implementacja, z siecia, z dokumentacja itd itp
+Osiągnięto skuteczność sieci na poziomie 90\% (średnio 1~błąd w zestawie 11 testów).
+
+W poszczególnych testach osiągano różną pewność odpowiedzi sieci. Jest to ściśle zależne od tego, czy w zestawie występuje język
+o podobnej częstotliwości liter. Przykładowo:
+\begin{itemize}
+ \item języki niemiecki i polski były rozpoznawane z pewnością na poziomie 95-100%,
+ \item łacina i wywodzące się z niej języki romańskie: hiszpański, włoski, francuski były rozpoznawane z dużo mniejszą
+skutecznością (30-70\%),
+ \item języki czeski i słowacki, uważane za podobne do siebie, były zdecydowanie rozróżniane:
+  \begin{itemize}
+   \item test czeski: sieć odpowiedziała, że na 81\% jest to język czeski, natomiast język słowacki tylko na 16\%;
+   \item test słowacki: sieć odpowiedziała, że na 90\% jest to język słowacki, natomiast język czeski tylko na 1\%.
+  \end{itemize}
+\end{itemize}
+
+Skuteczność sieci zależy również ściśle od zbioru danych uczących. Powinno się w nim znajdować jak najwięcej tekstów,
+odpowiedniej długości (im dłuższe tym lepsze). W~wykorzystanym zbiorze pojawiały się np teksty piosenek składające się tylko
+z kilku zwrotek, co mogło okazać się zbyt krótką próbką języka i mogło utrudniać naukę sieci.
+
+Na skuteczność sieci może wpływać również liczba neuronów w warstwie ukrytej, o czym już wcześniej wspomniano. W trakcie
+testów wypróbowano kilka różnych wartości, jednak nie osiągnięto istotnych różnic. Zdecydowano się pozostawić 10 neuronów
+w~tej warstwie.
+
 
 \section{Wnioski}
-\IEEEPARstart{P}{rojekt} jest fajny, bądź nie i jak go można dalej rozwijać, albo gdzie go można zastosować
+\IEEEPARstart{Z}{} programistycznego punktu widzenia aplikacja była prosta i implementacja nie stwarzała większych
+problemów, wymagała przede wszystkim odpowiedniej ilości poświęconego czasu.
 
+Rozważany problem okazał się bardzo ciekawym od strony poznawczej. Zmierzenie się z zadaniem pozwoliło zapoznać się
+z~dostępnymi materiałami na temat technik rozpoznawania języka tekstu. Testowanie większej ilości języków, niż początkowo
+zakładane trzy, pozwoliło na odkrycie wiedzy, której autorzy wcześniej nie posiadali (m.in. o dużej różnicy pomiędzy
+językami czeskim i słowackim).
 
+Wyświetlenie tabeli z informacjami o częstotliwości występowania liter w poszczególnych językach pozwoliło na prowadzenie
+własnych poszukiwań podobieństw i różnic między językami. W ramach rozwoju projektu warto zwizualizować sieć i przedstawić
+wagi, które są ustalane w procesie uczenia - może to pozwolić na zobaczenie zależności, których nie widać ``na pierwszy
+rzut oka''.
 
+Projekt można również rozwinąć o stosowanie innych technik rozpoznawania języka, np obsługiwać wszystkie dostępne znaki
+danego alfabetu, a nie tylko litery alfabetu łacińskiego, jak to zrobiono w niniejszym projekcie.
+
+Walory poznawcze z pewnością będzie posiadało rozszerzenie projektu o obsługę kolejnych języków i zwiększenie ilości plików
+w zbiorze uczącym. Stworzona aplikacja pozwala na dowolne rozszerzanie tych dwóch zbiorów, co zachęca do dalszych
+eksperymentów.
 
 
 % if have a single appendix:
