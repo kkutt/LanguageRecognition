@@ -583,6 +583,7 @@ public class Gui extends javax.swing.JFrame {
 
     private void clearFilesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFilesButtonActionPerformed
          textLanguageList.setListData(new Vector<String>());
+         textFiles.clear();
     }//GEN-LAST:event_clearFilesButtonActionPerformed
 
     private void dataSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataSaveButtonActionPerformed

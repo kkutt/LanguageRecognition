@@ -1,6 +1,5 @@
 package ssn.network;
 
-import com.sun.org.apache.bcel.internal.generic.GETFIELD;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.HashSet;

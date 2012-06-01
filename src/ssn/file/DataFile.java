@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Klasa dzialajaca na plikach zawierajacych zestawy danych (do nauki/testu).

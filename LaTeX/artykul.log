@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  1 JUN 2012 20:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  1 JUN 2012 21:04
 entering extended mode
  %&-line parsing enabled.
 **artykul.tex
@@ -440,31 +440,36 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 255.
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--332
+Underfull \hbox (badness 2809) in paragraph at lines 268--269
+[]\T1/ptm/m/n/10 Graficzny in-ter-fejs u»ytkown-ika umo»li-wia dost¦p do
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--335
 []\T1/ptm/m/n/8 T. Smykowski, \T1/ptm/m/it/8 Jak Google rozpoz-naje j¦zyk tek-s
 tu?\T1/ptm/m/n/8 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--332
+Underfull \hbox (badness 10000) in paragraph at lines 332--335
 \T1/ptm/m/n/8 http://polishwords.com.pl/blog/2009/rozpoznawanie-jezyka-tekstu/,
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--344
+Underfull \hbox (badness 10000) in paragraph at lines 345--347
 []\T1/ptm/m/it/8 Ethnologue\T1/ptm/m/n/8 , http://www.ethnologue.com/language_i
 ndex.asp, (dost¦p:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--348
+Underfull \hbox (badness 10000) in paragraph at lines 349--351
 \T1/ptm/m/n/8 http://en.wikipedia.org/wiki/Wikipedia:Language_recognition_chart
 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--352
+Underfull \hbox (badness 10000) in paragraph at lines 353--355
 \T1/ptm/m/n/8 http://www.heatonresearch.com/wiki/Resilient_Propagation, (dost¦p
 :
  []
@@ -483,7 +488,7 @@ r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
 mf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/typ
 e1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a
 .pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artykul.pdf (2 pages, 76038 bytes).
+Output written on artykul.pdf (2 pages, 76196 bytes).
 PDF statistics:
  30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
