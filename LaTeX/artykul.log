@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  31 MAY 2012 12:25
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  1 JUN 2012 08:45
 entering extended mode
  %&-line parsing enabled.
 **artykul.tex
@@ -413,31 +413,28 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
 \everyMPtoPDFconversion=\toks19
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 55.
+(Font)              <8> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 55.
+(Font)              <6> on input line 245.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 231.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 231.
+(Font)              <5> on input line 245.
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
-
 
 
 ] (./artykul.aux) ) 
 Here is how much of TeX's memory you used:
  2092 strings out of 495026
  29077 string characters out of 1181802
- 77678 words of memory out of 3000000
+ 79681 words of memory out of 3000000
  5280 multiletter control sequences out of 15000+50000
  115123 words of font info for 115 fonts, out of 3000000 for 9000
  51 hyphenation exceptions out of 8191
- 26i,5n,21p,204b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 26i,5n,21p,204b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/
 share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
 fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/tim
 es/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artykul.pdf (1 page, 54708 bytes).
+Output written on artykul.pdf (1 page, 55783 bytes).
 PDF statistics:
  23 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

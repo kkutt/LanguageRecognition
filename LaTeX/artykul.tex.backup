@@ -61,31 +61,21 @@ znajdujących się w ludzkim mózgu. Każdy sztuczny neuron zbiera sygnały wej�
 odpowiedniej transformacji i zwraca odpowiednią wartość na wyjściu. Sztuczna sieć neuronowa może
 składać się z tysięcy takich elementarnych neuronów. W zależności od budowy sieci oraz od wykorzystywanej
 przez neurony funkcji aktywacji, wyróżniamy różne rodzaje sieci.\\
-Tutaj można jeszcze skorzystać z książki Tadeusiewicza~\cite{tadeusiewicz}, strona 12.
+Tutaj można jeszcze skorzystać z książki Tadeusiewicza~(\cite{tadeusiewicz})
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
-\subsection{Rodzaje sieci}
-Skorzystać z książki Tadeusiewicza~\cite{tadeusiewicz} - główne rodzaje sieci to rozdziały książki - napisać
-zdanie-dwa o każdym z nich
+\subsubsection{Rodzaje}
+Lorem ipsum.
 
+\subsubsection{Zastosowania}
+Lorem ipsum.
 
-\subsection{Zastosowania sieci}
-Wiki i książka tadeusiewicza.
 
 
 \subsection{Rozpoznawanie języka}
-Coś ogólnie o naszym problemie. Do czego to może być potrzebne, kto już walczył z tym problemem i jak
-(np google translator ma opcję rozpoznawania języka. \\
-Przedstawione opcje to nie musi być tylko częstotliwość liter - pewnie są jakieś inne (choćby sprawdzanie,
-czy występują znaki specjalne danego języka :P)
-
-
-\subsection{Określenie języka przy pomocy sieci neuronowej}
-Czyli wprowadzenie teoretyczne do naszego projektu. Uznaliśmy, że ten problem można rozwiązać przy pomocy sieci
-neuronowej. Uznaliśmy, że fajnie będzie to zrobić przy pomocy prostej sieci, złożonej z trzech wartstw,
-z neuronami z aktywacją sigmoidalną (i dlaczego akurat taką :P)
+Coś ogólnie o naszym problemie
 
 
 % An example of a floating figure using the graphicx package.
@@ -172,9 +162,7 @@ z neuronami z aktywacją sigmoidalną (i dlaczego akurat taką :P)
 
 
 \section{Implementacja}
-Tutaj idzie sekcja o tym jak podzieliliśmy na moduły, jaką sieć wybraliśmy, jaką bibliotekę (i dlaczego) \\
-Do środkowej warstwy wzięliśmy 10 neuronów - tak z dupy trochę - może to potestować? (to może być też w testach
-w sumie)
+Tutaj idzie sekcja o tym jak podzieliliśmy na moduły, jaką sieć wybraliśmy, jaką bibliotekę (i dlaczego)
 
 
 
