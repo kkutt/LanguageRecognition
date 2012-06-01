@@ -7,7 +7,7 @@
 \graphicspath{/img/}
 
 % correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
+\hyphenation{naj-waż-niej-sze neu-ro-no-we}
 
 
 \begin{document}
@@ -227,9 +227,42 @@ algorytm, ponieważ jest on najbardziej efektywnym algorytmem uczenia dla prosty
 % floats. This can be corrected via the \fnbelowfloat command of the
 % stfloats package.
 
+\section{Specyfikacja wymagań}
+\IEEEPARstart{P}{odczas} analizy problemu zidentyfikowano dwa najważniejsze przypadki użycia aplikacji: wczytanie
+zbioru uczącego i trenowanie sieci, oraz wczytanie zbioru testowego i egzaminowanie sieci.
+
+Zdecydowano się również na obsługę dodatkowych przypadków użycia, które ułatwiają korzystanie z aplikacji:
+modyfikację zbioru uczącego / testowego (czyszczenie, dodawanie plików) i jego zapisywanie / wczytywanie do / z pliku,
+modyfikację zbioru obsługiwanych języków, zapis / odczyt wyuczonej sieci neuronowej do / z pliku.
+
 
 \section{Implementacja}
-\IEEEPARstart{S}{tworzona} aplikacja składa się z trzech głównych części: obsługi plików, obsługi sieci neuronowej i GUI.
+\IEEEPARstart{A}{plikacja} została napisana w języku Java (wersja 1.6). Wykorzystano środowisko Netbeans IDE
+oraz bibliotekę Encog Machine Learning Framework.
+
+Program składa się z trzech głównych części: obsługi plików, obsługi sieci neuronowej oraz GUI.
+
+\subsection{Obsługa plików}
+Aplikacja wykorzystuje trzy rodzaje plików. Wszystkie pliki przechowywane są w folderze data.
+
+\subsubsection{Pliki z tekstami źródłowymi}
+Pliki o rozszerzeniu *.txt, zawierają tekst źródłowy. Każdy tekst znajduje się w osobnym pliku. Dla każdego pliku
+dokonywana jest analiza częstotliwości występowania liter, przy pomocy prostego modułu, stworzonego na potrzeby przedstawianej
+aplikacji.
+
+\subsubsection{Pliki zestawów danych}
+Plik o rozszerzeniu *.txt, zawierający informacje o zestawie plików z tekstami źródłowymi (do nauki/testu).
+W pierwszej linii zawiera liczbę $N$ plików tekstowych. W kolejnych $N$ liniach zawiera informacje o każdym z plików
+w postaci par: JĘZYK ŚCIEŻKA, gdzie JĘZYK to oznaczenie literowe języka, w jakim jest napisany dany tekst, np. PL, EN, FR
+(może to być dowolne słowo), zaś ŚCIEŻKA to ścieżka dostępu do danego pliku (wymagane jest, by nie posiadała białych znaków).
+
+\subsubsection{Pliki sieci neuronowych}
+Pliki binarne zawierające zserializowany obiekt sieci neuronowej.
+
+\subsection{Obsługa sieci neuronowej}
+
+
+\subsection{GUI}
 
 
 

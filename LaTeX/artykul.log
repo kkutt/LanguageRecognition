@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  1 JUN 2012 20:00
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.5.13)  1 JUN 2012 20:48
 entering extended mode
  %&-line parsing enabled.
 **artykul.tex
@@ -435,54 +435,57 @@ Underfull \hbox (badness 3803) in paragraph at lines 142--145
 \T1/ptm/m/n/10 wowych jed-nok-ierunk-owych, czyli al-go-rytmu propa-gacji
  []
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 255.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 255.
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--299
+Underfull \hbox (badness 10000) in paragraph at lines 329--332
 []\T1/ptm/m/n/8 T. Smykowski, \T1/ptm/m/it/8 Jak Google rozpoz-naje j¦zyk tek-s
 tu?\T1/ptm/m/n/8 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--299
+Underfull \hbox (badness 10000) in paragraph at lines 329--332
 \T1/ptm/m/n/8 http://polishwords.com.pl/blog/2009/rozpoznawanie-jezyka-tekstu/,
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--311
+Underfull \hbox (badness 10000) in paragraph at lines 342--344
 []\T1/ptm/m/it/8 Ethnologue\T1/ptm/m/n/8 , http://www.ethnologue.com/language_i
 ndex.asp, (dost¦p:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 313--315
+Underfull \hbox (badness 10000) in paragraph at lines 346--348
 \T1/ptm/m/n/8 http://en.wikipedia.org/wiki/Wikipedia:Language_recognition_chart
 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 317--319
+Underfull \hbox (badness 10000) in paragraph at lines 350--352
 \T1/ptm/m/n/8 http://www.heatonresearch.com/wiki/Resilient_Propagation, (dost¦p
 :
  []
 
-[2
-
-] (./artykul.aux) ) 
+[2] (./artykul.aux) ) 
 Here is how much of TeX's memory you used:
- 2081 strings out of 495026
- 28996 string characters out of 1181802
- 82699 words of memory out of 3000000
- 5276 multiletter control sequences out of 15000+50000
+ 2082 strings out of 495026
+ 29017 string characters out of 1181802
+ 82701 words of memory out of 3000000
+ 5278 multiletter control sequences out of 15000+50000
  110452 words of font info for 107 fonts, out of 3000000 for 9000
- 51 hyphenation exceptions out of 8191
+ 50 hyphenation exceptions out of 8191
  26i,5n,21p,210b,227s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/
-share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/
-fonts/type1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/tim
-es/utmr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
-Output written on artykul.pdf (2 pages, 65475 bytes).
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</us
+r/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
+mf-texlive/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/typ
+e1/urw/times/utmbi8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a
+.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmri8a.pfb>
+Output written on artykul.pdf (2 pages, 76038 bytes).
 PDF statistics:
- 26 PDF objects out of 1000 (max. 8388607)
+ 30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

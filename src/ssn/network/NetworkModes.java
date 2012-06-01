@@ -57,11 +57,11 @@ public class NetworkModes {
                         languagesAndLettersQuantity[i][j] += quantity[j];
                 }
             }
-            if(countFilesInThisLanguage > 1) {
-                for( int j = 0; j < LanguageRecognition.LETTERS_COUNT; j++){
+            
+            for( int j = 0; j < LanguageRecognition.LETTERS_COUNT; j++){
+                if(countFilesInThisLanguage > 1)
                     languagesAndLettersQuantity[i][j] /= (double)countFilesInThisLanguage;
-                    languagesAndLettersQuantity[i][j] *= 100.0;
-                }
+                languagesAndLettersQuantity[i][j] *= 100.0;
             }
         }
         /* wyswietlenie czestosci */
